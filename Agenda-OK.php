@@ -15,6 +15,12 @@
   <script src="./lib/jquery-ui/jquery-ui.js"></script>
   <link rel="stylesheet" href="./lib/jquery-ui/themes/base/jquery-ui.css" />
 
+  <!-- ----- fullCalendar ----- -->
+  <script src='./lib/moment.js'></script>
+  <script src='./lib/fullcalendar/fullcalendar.js'></script>
+  <script src='./lib/fullcalendar/locale/it.js'></script>
+  <link rel='stylesheet' href='./lib/fullcalendar/fullcalendar.css' />
+
   <!-- ----- AgendaOK ----- -->
   <link rel="stylesheet" href="./Agenda-OK.css">
 
@@ -97,6 +103,8 @@
       <td></td>
     </tr>
   </table> <!-- id="footer" -->
+
+  <script src="./calendar.js"></script>
 
 </div> <!-- id="container" -->
 </body>
