@@ -112,17 +112,20 @@
     <div id="tabs-4">
       <h1>Attività</h1>
       <div id="activities"></div>
+      <div class="toBeImplemented">TO BE IMPLEMENTED</div>
     </div>
 
     <!-- ============================================== -->
     <div id="tabs-5">
       <h1>Categorie</h1>
       <div id="categories"></div>
+      <div class="toBeImplemented">TO BE IMPLEMENTED</div>
     </div>
 
     <!-- ============================================== -->
     <div id="tabs-6">
       <h1>Help</h1>
+      <div class="toBeImplemented">TO BE IMPLEMENTED</div>
       <h2 id="H1">Calendario</h2>
       <p>TBD</p>
       <h2 id="H2">Rubrica</h2>
@@ -142,6 +145,7 @@
     </tr>
   </table> <!-- id="footer" -->
 
+  <script src="./lib/DB.js"></script>
   <script src="./init.js"></script>
   <script src="./calendar.js"></script>
   <script src="./scheduler.js"></script>

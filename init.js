@@ -11,3 +11,9 @@ var		todayDate = moment().startOf('day');
 var		YESTERDAY = todayDate.clone().subtract(1, 'day').format('YYYY-MM-DD');
 var		TODAY     = todayDate.format('YYYY-MM-DD');
 var		TOMORROW  = todayDate.clone().add(1, 'day').format('YYYY-MM-DD');
+
+// ------------- datastore ----------------
+DataStore.init ();
+AgendaOKstore.open ();
+
+$( function() { createPopopFormDialog ('createNewUserButton', 'new-user-dialog-form'); });	// init new user dialog

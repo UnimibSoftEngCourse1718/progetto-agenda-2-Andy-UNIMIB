@@ -15,6 +15,9 @@ html, body { font-family: Veranda, Verdana, Arial, Helvetica, sans-serif; margin
 #rubrica td { border: solid red 1px; width: 33%; vertical-align: top; }
 
 
+.toBeImplemented { text-align: center; color:red; font-size:200%; border: solid thin red; padding:3em; }
+
+
 /* ============ POPUP DIALOG STYLE ============== */
 /*
 body { font-family: Arial, Helvetica, sans-serif; } 
