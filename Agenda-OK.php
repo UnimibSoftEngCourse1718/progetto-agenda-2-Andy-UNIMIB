@@ -25,6 +25,10 @@
   <script src='./lib/fullcalendar-scheduler/scheduler.js'></script>
   <link rel='stylesheet' href='./lib/fullcalendar-scheduler/scheduler.css' />
 
+  <!-- ----- sliderNav ----- -->
+  <script src='./lib/sliderNav/slidernav.js'></script>
+  <link rel="stylesheet" href="./lib/sliderNav/slidernav.css">
+
   <!-- ----- AgendaOK ----- -->
   <link rel="stylesheet" href="./Agenda-OK.css">
 
@@ -70,8 +74,34 @@
     <!-- ============================================== -->
     <div id="tabs-3">
       <h1>Rubrica</h1>
-      <div id="rubrica">
-      </div>
+      <!-- object name="Rubrica" type="text/html" data="Rubrica.inc.html"></object -->
+      <table id="rubrica">
+        <tr>
+	  <td>
+	    <div class="sliderRubrica">
+	      <div class="slider-content">
+	        <?php require ('rubricaSampleData.inc.html'); ?>
+	      </div>
+	    </div>
+	  </td>
+
+	  <td>
+	  CATEGORIE
+	  <br/>
+	  add cat
+	  <br/>
+	  cat list and modify
+	  </td>
+
+	  <td>
+	  EDIT ACCOUNT
+	  <br/>
+	  fields for currently selected account
+	  <br/>
+
+	  </td>
+        </tr>
+      </table>
     </div>
 
     <!-- ============================================== -->
@@ -111,6 +141,12 @@
   <script src="./init.js"></script>
   <script src="./calendar.js"></script>
   <script src="./scheduler.js"></script>
+
+  <script>
+    // ------------- slider / rubrica ----------------
+    $('.sliderRubrica').sliderNav ();
+    $('.nameEntry').click (function () { alert ('pippo!!!'); return false; });
+  </script>
 
 </div> <!-- id="container" -->
 </body>
