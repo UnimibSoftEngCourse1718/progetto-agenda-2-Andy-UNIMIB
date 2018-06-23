@@ -1,6 +1,6 @@
 <?php
   $APPNAME='Agenda-OK';
-  $VERSION='0.1';
+  $VERSION='0.1 &Alpha;';
 ?>
 <!doctype html>
 <html lang="it">
@@ -20,6 +20,10 @@
   <script src='./lib/fullcalendar/fullcalendar.js'></script>
   <script src='./lib/fullcalendar/locale/it.js'></script>
   <link rel='stylesheet' href='./lib/fullcalendar/fullcalendar.css' />
+
+  <!-- ----- fullCalendar scheduler ----- -->
+  <script src='./lib/fullcalendar-scheduler/scheduler.js'></script>
+  <link rel='stylesheet' href='./lib/fullcalendar-scheduler/scheduler.css' />
 
   <!-- ----- AgendaOK ----- -->
   <link rel="stylesheet" href="./Agenda-OK.css">
@@ -104,7 +108,9 @@
     </tr>
   </table> <!-- id="footer" -->
 
+  <script src="./init.js"></script>
   <script src="./calendar.js"></script>
+  <script src="./scheduler.js"></script>
 
 </div> <!-- id="container" -->
 </body>
