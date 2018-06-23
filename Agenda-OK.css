@@ -6,8 +6,10 @@ html, body { font-family: Veranda, Verdana, Arial, Helvetica, sans-serif; margin
 #tabs { min-height:800px; }
 #footer { font-size:80%; position: absolute; bottom: 0; height:3em; }
 
-#title { text-align: left; font-size:200%; font-weight:bold; }
-#auth  { text-align: right; }
+#title { text-align: left; font-size:200%; font-weight:bold; width:33%; }
+#auth  { width:66%; text-align: right; }
+#authentication span { display:inline-block; }
+#authentication input { display:inline-block; }
 
 #rubrica { width:100%; }
 #rubrica td { border: solid red 1px; width: 33%; vertical-align: top; }

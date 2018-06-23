@@ -24,6 +24,7 @@
   <!-- ----- fullCalendar scheduler ----- -->
   <script src='./lib/fullcalendar-scheduler/scheduler.js'></script>
   <link rel='stylesheet' href='./lib/fullcalendar-scheduler/scheduler.css' />
+  <script $('#calendar').fullCalendar ({ schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives' });></script>
 
   <!-- ----- sliderNav ----- -->
   <script src='./lib/sliderNav/slidernav.js'></script>
@@ -45,6 +46,9 @@
   <table id="header">
     <tr>
       <td id="title"><?php echo "$APPNAME v$VERSION"; ?></td>
+      <td id="auth">
+	<?php include 'auth.inc.html'; ?>
+      </td>
     </tr>
   </table> <!-- id="header" -->
 

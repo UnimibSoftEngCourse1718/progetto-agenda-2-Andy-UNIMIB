@@ -1,0 +1,40 @@
+	<!-- user authentication -->
+        <form id="authentication">
+	  <span id="hiuser">hi <span id="loggeduser">no user</span>!</span>
+          <span id="getuser">username: <input type="text" id="username" name="username" value=""></span>
+          <input type="button" id="loginbtn"  value="login"  onclick="login ();">
+          <input type="button" id="logoutbtn" value="logout" onclick="logout ();">
+        </form> 
+
+	<script>
+	  // --------------------------
+	  function login ()
+	  {
+	    var	username = $('#username')[0].value;
+	    // alert ('current user: '+username);
+	    if (username)
+	    {
+	      $('#loggeduser')[0].innerText = $('#username')[0].value;
+	      $('#getuser').hide ();
+	      $('#hiuser').show ();
+	      $('#loginbtn').hide ();
+	      $('#logoutbtn').show ();
+	    }
+	  }
+
+	  // --------------------------
+	  function logout ()
+	  {
+	    $('#username')[0].value = '';
+	    $('#loggeduser')[0].text = '';
+	    $('#hiuser').hide ();
+	    $('#loginbtn').show ();
+	    $('#logoutbtn').hide ();
+	    $('#getuser').show ();
+	  }
+	</script>
+
+	<script>
+	  $('#hiuser').hide ();
+	  $('#logoutbtn').hide ();
+	</script>
