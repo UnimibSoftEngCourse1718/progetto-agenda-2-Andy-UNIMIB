@@ -20,6 +20,7 @@
   <script src='./lib/fullcalendar/fullcalendar.js'></script>
   <script src='./lib/fullcalendar/locale/it.js'></script>
   <link rel='stylesheet' href='./lib/fullcalendar/fullcalendar.css' />
+  <!--link rel='stylesheet' href='./lib/fullcalendar/fullcalendar.print.css' /-->
 
   <!-- ----- fullCalendar scheduler ----- -->
   <script src='./lib/fullcalendar-scheduler/scheduler.js'></script>
@@ -147,7 +148,9 @@
 
   <script src="./lib/DB.js"></script>
   <script src="./init.js"></script>
+  <script src="./calendar.sampledata.js"></script>
   <script src="./calendar.js"></script>
+  <script src="./scheduler.sampledata.js"></script>
   <script src="./scheduler.js"></script>
 
   <script>

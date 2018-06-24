@@ -14,14 +14,15 @@
       // -----------
       selectable: true,
       selectHelper: true,
-      select: function (start, end)
+      // select: function (start, end, allDay, calendar, rid)
+      select: function (start, end, allDay, ev, res)
       {
         var	title = prompt ('Event Title:');
         var	eventData;
         if (title)
 	{
-	  alert ('view name/type:'+this.type +"\n" + (start.format ()) +' / '+ (end.format ()) + "\nuid:"+this.uid);
-	  eventData = { title: title, start: start, end: end, id: 99, resourceId: 'c' }; // this.uid };
+	  // alert ('view name/type:'+this.type +"\n" + (start.format ()) +' / '+ (end.format ()) + "\nrid:"+res.id);
+	  eventData = { title:title, start:start, end:end, id:currentId++, allDay:allDay, resourceId:res.id }; // this.uid };
 	  $('#scheduler').fullCalendar ('renderEvent', eventData, true); // stick? = true
         }
         $('#scheduler').fullCalendar ('unselect');
@@ -43,35 +44,15 @@
       // -----------
       eventDrop: function (event, delta, revertFunc)
       {
-        alert (event.title + " was dropped on " + event.start.format ());
-        if (!confirm ("Are you sure about this change?"))
+        // alert (event.title + " was dropped on " + event.start.format ());
+        if (!confirm ("Confermi la modifica?"))
           { revertFunc (); }
       },
 
       // -----------
       resourceLabelText: 'Attività',
-      resources:
-      [
-        { id: 'a', title: 'Auditorium A' },
-        { id: 'b', title: 'Auditorium B', eventColor: 'green' },
-        { id: 'c', title: 'Auditorium C', eventColor: 'orange' },
-        { id: 'd', title: 'Auditorium D', children:
-					[
-					  { id: 'd1', title: 'Room D1' },
-					  { id: 'd2', title: 'Room D2' }
-					]
-	},
-      ],
-
-      // -----------
-      events:
-      [
-        { id: '1', resourceId: 'b', start: TODAY + 'T02:00:00', end: TODAY + 'T07:00:00', title: 'event 1' },
-        { id: '2', resourceId: 'c', start: TODAY + 'T05:00:00', end: TODAY + 'T22:00:00', title: 'event 2' },
-        { id: '3', resourceId: 'd', start: YESTERDAY, end: TOMORROW, title: 'event 3' },
-        { id: '4', resourceId: 'e', start: TODAY + 'T03:00:00', end: TODAY + 'T08:00:00', title: 'event 4' },
-        { id: '5', resourceId: 'f', start: TODAY + 'T00:30:00', end: TODAY + 'T02:30:00', title: 'event 5' }
-      ],
+      resources:	resourcesSampleData,
+      events:		eventsSampleData,
 
       // -----------
       header:
@@ -87,10 +68,10 @@
       {
         promptResource:
 	{
-          text: 'add new cat',
+          text: 'nuova categoria',
           click: function()
 	  {
-            var catname = prompt ('nuova categoria:');
+            var catname = prompt ('nome della categoria:');
             if (catname)
 	    {
               $('#scheduler').fullCalendar ('addResource', { title: catname }, true); // scroll to the new resource?
@@ -99,3 +80,9 @@
         }
       },
     });
+
+// ------------------
+$(".fc-rows tr").on( "click", function()
+{
+  alert ( $( this ).text() );
+});
