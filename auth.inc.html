@@ -2,39 +2,73 @@
         <form id="authentication">
 	  <span id="hiuser">hi <span id="loggeduser">no user</span>!</span>
           <span id="getuser">username: <input type="text" id="username" name="username" value=""></span>
-          <input type="button" id="loginbtn"  value="login"  onclick="login ();">
-          <input type="button" id="logoutbtn" value="logout" onclick="logout ();">
+          <input type="button" id="loginbtn"  value="login"  onclick="onLogin ();">
+          <input type="button" id="logoutbtn" value="logout" onclick="onLogout ();">
         </form> 
 
 	<script>
 	  // --------------------------
-	  function login ()
+	  function onLogin (needReload=true)
 	  {
 	    var	username = $('#username')[0].value;
 	    // alert ('current user: '+username);
 	    if (username)
 	    {
-	      $('#loggeduser')[0].innerText = $('#username')[0].value;
+	      var	username = $('#username')[0].value;
+	      // $('#loggeduser')[0].innerText = $('#username')[0].value;
+	      $('#loggeduser')[0].innerText = username;
 	      $('#getuser').hide ();
 	      $('#hiuser').show ();
 	      $('#loginbtn').hide ();
 	      $('#logoutbtn').show ();
+
+	      // here must reload document with new user
+	      // location.replace ("https://www.w3schools.com");
+	      // alert (location + "\n" + location.origin + location.pathname + '?username='+username);
+	      var	RE = new RegExp ('^[^?]*');
+	      var	URL = RE.exec (location);
+	      // alert (location + "\n" + URL + '?username='+username);
+	      if (needReload) location.replace (URL + '?username='+username);
+	      /*
+	      else
+	      {
+	        Agenda_OK.authuser = username;
+		Agenda_OK.reloadEvents ();
+	      }
+	      */
 	    }
 	  }
 
 	  // --------------------------
-	  function logout ()
+	  function onLogout (needReload=true)
 	  {
-	    $('#username')[0].value = '';
-	    $('#loggeduser')[0].text = '';
+	    var	username = '';
+	    $('#username')[0].value = username;
+	    $('#loggeduser')[0].text = username;
 	    $('#hiuser').hide ();
 	    $('#loginbtn').show ();
 	    $('#logoutbtn').hide ();
 	    $('#getuser').show ();
+
+	    Agenda_OK.authuser = '';
+
+	    // here must reload document with no user
+	    var		RE = new RegExp ('^[^?]*');
+	    var		URL = RE.exec (location);
+	    if (needReload) location.replace (URL);
 	  }
 	</script>
 
 	<script>
-	  $('#hiuser').hide ();
-	  $('#logoutbtn').hide ();
+	  var	args = location.search;
+	  var	RE = /username=([^&]*)/;
+	  var	match = RE.exec (args);
+	  var	username = match ? match [1] : '';
+	  // alert (location + "\n" + 'reloading with user: '+username + "\n" + match);
+
+	  $('#username')[0].value = username;
+	  username ? onLogin (false) : onLogout (false);
+
+	  // $('#hiuser').hide ();
+	  // $('#logoutbtn').hide ();
 	</script>

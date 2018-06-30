@@ -3,11 +3,12 @@
     var		today = new Date();
     var		todaystr = today.toISOString ().substring (0, 10);
 
-    var		calendar = $('#calendar').fullCalendar ('getCalendar');
+    // var		calendar = $('#calendar').fullCalendar ('getCalendar');
+    console.log ('CALENDAR');
+
     $('#calendar').fullCalendar (
     {
-      // defaultDate: '2018-06-12',
-      defaultDate: todaystr,
+      defaultDate: todaystr,	// '2018-06-12'
       header:
       {
         left:   'prev,next today',
@@ -35,9 +36,8 @@
       eventLimit: true, // allow "more" link when too many events
       eventClick: function(calEvent, jsEvent, view)
       {
-        alert ('Event: ' + calEvent.title +"\n"+
-      	 'View: ' + view.name +"\n"+
-      	 'Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+        alert ('Event: ' + calEvent.title +"\n"+ 'View: ' + view.name +"\n"+
+			'Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
         $(this).css ('border-color', 'red');	// change the border color just for fun
 
         if (event.url) { window.open (event.url); return false; }
@@ -51,5 +51,41 @@
       },
 
       // -------------- SAMPLE DATA ------------------
-      events: calendarSampleData
+      events: [],
+
     });
+
+
+
+
+/*
+  // ======================================================================
+  function	reloadEvents ()
+  {
+    console.log ('calenddar reloadEvents for user: ['+ Agenda_OK.authuser +']');
+
+    if (Agenda_OK.authuser)
+    {
+      var	calendar = $('#calendar').fullCalendar ('getCalendar');
+
+      var	trx = Agenda_OK.DBMS.DB.transaction ('events', 'readonly').objectStore ('events');
+      var	filter = IDBKeyRange.only (Agenda_OK.authuser);
+
+      trx.openCursor (filter).onsuccess = function (event)
+      {
+        var         cursor = event.target.result;
+        if (cursor)
+        {   
+	  console.log ("record: %o", cursor.value);
+	  // Agenda_OK [tableName].push (cursor.value);
+	  eventData = { title: cursor.value.title, start: cursor.value.start, end: cursor.value.end };
+	  $('#calendar').fullCalendar ('renderEvent', eventData, true); // stick? = true
+
+	  cursor.continue (); 
+        }   
+        // else
+          // { console.log ("No more records!"); }
+      }
+    }
+  }
+*/

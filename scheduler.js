@@ -82,7 +82,10 @@
     });
 
 // ------------------
-$(".fc-rows tr").on( "click", function()
+$(document).ready (function ()
 {
-  alert ( $( this ).text() );
+  $('.fc-rows tr').on ('click', function ()
+  {
+    alert ($(this).text ());
+  });
 });

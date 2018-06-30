@@ -14,6 +14,7 @@
   <script src="./lib/jquery.js"></script>
   <script src="./lib/jquery-ui/jquery-ui.js"></script>
   <link rel="stylesheet" href="./lib/jquery-ui/themes/base/jquery-ui.css" />
+  <script>$.holdReady (true);</script>
 
   <!-- ----- fullCalendar ----- -->
   <script src='./lib/moment.js'></script>
@@ -25,7 +26,7 @@
   <!-- ----- fullCalendar scheduler ----- -->
   <script src='./lib/fullcalendar-scheduler/scheduler.js'></script>
   <link rel='stylesheet' href='./lib/fullcalendar-scheduler/scheduler.css' />
-  <script $('#calendar').fullCalendar ({ schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives' });></script>
+  <script>$('#calendar').fullCalendar ({ schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives' });</script>
 
   <!-- ----- sliderNav ----- -->
   <script src='./lib/sliderNav/slidernav.js'></script>
@@ -33,11 +34,8 @@
 
   <!-- ----- AgendaOK ----- -->
   <link rel="stylesheet" href="./Agenda-OK.css">
+  <script src='./Agenda-OK.js'></script>
 
-  <script>
-    // initialize JQuery UI Tabs ...
-    $(function () { $( "#tabs" ).tabs(); } );
-  </script>
 </head>
 
 <body>
@@ -146,17 +144,39 @@
     </tr>
   </table> <!-- id="footer" -->
 
-  <script src="./lib/DB.js"></script>
   <script src="./init.js"></script>
-  <script src="./calendar.sampledata.js"></script>
-  <script src="./calendar.js"></script>
+  <script src="./Agenda-OK.DB.js"></script>
   <script src="./scheduler.sampledata.js"></script>
+  <script src="./calendar.js"></script>
   <script src="./scheduler.js"></script>
 
-  <script>
+  <script src='./sampledata.users.js'></script>
+  <script src='./sampledata.events.js'></script>
+
+  <script type="text/javascript">
     // ------------- slider / rubrica ----------------
     $('.sliderRubrica').sliderNav ();
     $('.nameEntry').click (function () { alert ('pippo!!!'); return false; });
+
+    Agenda_OK.DBMS = new DBMS ('Agenda-OK');
+    // Agenda_OK.DBMS.clear ();
+    Agenda_OK.DBMS.open ();
+
+    $(document).ready (function ()
+    {
+      console.log ('READY!!!');
+      // initialize JQuery UI Tabs ...
+      $(function () { $( "#tabs" ).tabs(); } );
+
+      // Agenda_OK.calendar = $('#calendar').fullCalendar ('getCalendar');
+      // Agenda_OK.calendar.reloadData ();
+      var	username = /[?&]username=([^&]*)/.exec (window.location.search);
+      Agenda_OK.authuser = username ? username [1] : '';
+      // Agenda_OK.reloadEvents ();
+      reloadEvents ();
+
+      console.log ('FINE DELL\'INIZIO!!!!');
+    });
   </script>
 
 </div> <!-- id="container" -->
