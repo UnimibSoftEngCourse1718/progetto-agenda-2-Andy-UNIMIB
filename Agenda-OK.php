@@ -44,7 +44,7 @@
   <!-- ============================================== -->
   <table id="header">
     <tr>
-      <td id="title"><?php echo "$APPNAME v$VERSION"; ?></td>
+      <td id="appname"><?php echo "$APPNAME v$VERSION"; ?></td>
       <td id="auth">
 	<?php include 'auth.inc.html'; ?>
       </td>
@@ -144,6 +144,8 @@
     </tr>
   </table> <!-- id="footer" -->
 
+  <?php require ('eventFormDialog.inc.html'); ?>
+
   <script src="./init.js"></script>
   <script src="./Agenda-OK.DB.js"></script>
   <script src="./scheduler.sampledata.js"></script>
@@ -167,6 +169,14 @@
       console.log ('READY!!!');
       // initialize JQuery UI Tabs ...
       $(function () { $( "#tabs" ).tabs(); } );
+
+      // ----- create hook to popup event dialog -----
+      $(document).ready(function ()
+      {
+        // $('#event-dialog').dialog ({ autoOpen: false });
+        $('.fc-event-container' ).click (function()
+          { $('#event-dialog').dialog ('open'); });
+      });
 
       // Agenda_OK.calendar = $('#calendar').fullCalendar ('getCalendar');
       // Agenda_OK.calendar.reloadData ();

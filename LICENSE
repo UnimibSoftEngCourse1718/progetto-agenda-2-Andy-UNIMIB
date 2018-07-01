@@ -1,0 +1,19 @@
+questa applicazione è rilasciata sotto licenza GPLv3 License (anche a causa della licenza scelta per FullCalendar Scheduler)
+
+L'applicazione utilizza le seguenti  librerie esterne, con le relative licenze d'uso:
+
+
+JQuery: MIT License e CC-0
+	https://jquery.org/license/
+	https://creativecommons.org/publicdomain/zero/1.0/deed.en
+
+FullCalendar: MIT License
+	https://fullcalendar.io/license
+
+FullCalendar Scheduler: GPLv3 License
+	https://fullcalendar.io/scheduler/license
+
+Sliderav: MIT, BSD e GPL License
+	http://demos.devgrow.com/slidernav-jquery-plugin/
+
+

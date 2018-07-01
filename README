@@ -1,0 +1,28 @@
+Corso Q119 - Ingegneria del Software - anno 2017-2018
+Progetto Agenda-OK
+Andrea Rui
+Matricola: 806765
+
+=============================================================================
+
+Il progetto è interamente basato su HTML5 e Javascript, utilizzando IndexedDB.
+
+Per costruire il deliverable occorre disporre di make e php.
+Sono state utilizzate librerie e componenti esterni (JQuery, fullCalendar, sliderNav, ..)
+Tutti tali componenti sono disponibili con licenza open source.
+Tali componenti sono stati inclusi nel repository soltanto per avere un punto unico di riferimento
+per la riproduzione dell'eseguibile.
+In un contesto normale dovrebbero essere scaricate separatamente le versioni più recenti.
+
+Php viene utilizzato soltanto come pre-processor, per assemblare l'HTML finale dai vari componenti
+
+Installazione:
+1. scaricare il repository da GitHub
+2. eseguire make clean
+3. eseguire make
+4. aprire la pagina Agenda-OK.html con un browser
+
+Nella cartella doc è contenuta la documentazione inerente al progetto.
+
+
+Per semplicità, al termine del progetto verrà pubblicata la versione definitiva del progetto e della documentazione di rilascio nella cartella delivery, per chi volesse valutare il progetto senza l'iter di riproduzione.

@@ -1,0 +1,83 @@
+
+  <!-- ============================================== -->
+  <div id="event-dialog" title="Modifica evento">
+    <form>
+      <fieldset>
+	<input type="hidden" name="resourceId" resourceId="id" value=""/></td>
+	<table>
+	  <tr>
+	    <td><label for="title">Descrizione</label></td>
+	    <td><input type="text" name="title" id="title" size="50" value=""/></td>
+	  </tr>
+	  <tr>
+	    <td><label for="category">Categoria</label></td>
+	    <td><input type="text" name="category" id="category" value=""></td>
+	  </tr>
+	  <tr>
+	    <td><label for="alarm">Pro-memoria</label></td>
+	    <td><input type="text" name="alarm" id="alarm" value=""></td>
+	  </tr>
+	  <tr>
+	    <td><label for="note">Note</label></td>
+	    <td><input type="text" name="note" id="note" value=""></td>
+	  </tr>
+	</table>
+
+	<!-- Allow form submission with keyboard without duplicating the dialog button -->
+	<!--input type="submit" tabindex="-1" style="position:absolute; top:-1000px"-->
+      </fieldset>
+    </form>
+  </div>
+
+
+  <!-- ============================================== -->
+  <script>
+    $(function ()
+    {
+      var dialog, form;
+
+      // update data back to caller
+      function addEvent ()
+      {
+	var	valid = true;
+        var	eventData = $('#event-dialog').data ('calEvent');
+        console.log ('saving calEvent: %o', eventData);
+	if (valid)
+	{
+	  eventData.title = $('#title')[0].value;
+	  $('#calendar').fullCalendar ('updateEvent', eventData); //, true); // stick? = true
+	  dialog.dialog ('close');
+	}
+	return valid;
+      };
+
+      dialog = $('#event-dialog').dialog(
+      {
+        autoOpen: false,
+        // height: 400,
+        // width: '40em', // 450,
+        modal: true,
+
+        buttons:	// intialize dialog
+        {
+          'Add / update event': addEvent,
+          Cancel: function() { dialog.dialog ('close'); }
+        },
+
+        open: function ()	// populate dialog fields
+        {
+          var	eventData = $('#event-dialog').data ('calEvent');
+          console.log ('popping up calEvent: %o', eventData);
+	  // initialize fields with event data ...
+	  $('#title')[0].value = eventData.title;
+        },
+
+        close: function ()	// called any way on OK or cancel (to be verified)
+        {
+          // form [0].reset ();
+          // allFields.removeClass ('ui-state-error');
+        }
+      });
+    } );
+  </script>
+
