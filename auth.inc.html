@@ -55,7 +55,11 @@
 	    // here must reload document with no user
 	    var		RE = new RegExp ('^[^?]*');
 	    var		URL = RE.exec (location);
-	    if (needReload) location.replace (URL);
+	    if (needReload)
+	    {
+	      Agenda_OK.DBMS.DB.close ();
+	      location.replace (URL);
+	    }
 	  }
 	</script>
 

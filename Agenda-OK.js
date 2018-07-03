@@ -26,19 +26,19 @@ function	reloadEvents ()
     var	calendar = $('#calendar').fullCalendar ('getCalendar');
 
     var	trx = Agenda_OK.DBMS.DB.transaction ('events', 'readonly').objectStore ('events');
-    // var	filter = IDBKeyRange.only (Agenda_OK.authuser);
 
-    // trx.openCursor (filter).onsuccess = function (event)
     trx.openCursor ().onsuccess = function (event)
     {
       var         cursor = event.target.result;
       if (cursor)
       {   
+	if (cursor.value.id >= Agenda_OK.nextEventID)
+	  Agenda_OK.nextEventID = cursor.value.id +1;
+
         if (cursor.value.user == Agenda_OK.authuser)
 	{
 	  console.log ("record: %o", cursor.value);
-	  // Agenda_OK [tableName].push (cursor.value);
-	  var	eventData = { title: cursor.value.title, start: cursor.value.start, end: cursor.value.end };
+	  var	eventData = cursor.value;
 	  $('#calendar').fullCalendar ('renderEvent', eventData, true); // stick? = true
         }
 	cursor.continue (); 
@@ -47,4 +47,45 @@ function	reloadEvents ()
         // { console.log ("No more records!"); }
     }
   }
+}
+
+// ======================================================================
+function	createEvent (record)
+{
+  var	tableName = 'events';
+  console.log ('calendar create event for user: ['+ Agenda_OK.authuser +'] - event: %o', record);
+
+  console.log ('adding '+'events'+' data ...');
+  var               trx = Agenda_OK.DBMS.DB.transaction (['events'], 'readwrite');
+  trx.oncomplete =  function (event) { console.log ('trx initialize '+'events'+' completed'); }
+  trx.onerror =     function (event) { console.log ('trx initialize '+'events'+" ERROR!!!", event.target); }
+  var               store = trx.objectStore ('events');
+
+  console.log ("record: %o", record);
+  var		request = store.add (record);
+  request.onsuccess = function (event) { console.log ('event added ...'); }
+  request.onerror   = function (event) { console.log ("event save error: %o", event.target); }
+  console.log ('events'+': sample data added ...');
+}
+
+// ======================================================================
+function	updateEvent (event)
+{
+  console.log ('calendar update event for user: ['+ Agenda_OK.authuser +'] - event: %o', event);
+  var	trx = Agenda_OK.DBMS.DB.transaction (['events'], 'readwrite').objectStore ('évents');
+  var	request = trx.get (event.id);
+  request.onerror = function (event) { alert ('failed opening store for updating record: %o', event);  };
+  request.onsuccess = function (event)
+  {
+    // var data = event.target.result;	// Get the old value that we want to update
+    // data.age = 42;			// update the value(s) in the object that you want to change
+
+    // Put this updated object back into the database.
+    var		requestUpdate = trx.put (event);
+    requestUpdate.onerror = function (event) { alert ('failed updating record: %o', event);  };
+    requestUpdate.onsuccess = function (event)
+    {
+      console.log ('event updated: %o', event);
+    };
+  };
 }

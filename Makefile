@@ -18,6 +18,9 @@ clean:
 		rm -f delivery/doc/*
 		cd doc; make clean
 
+sonar:
+		~/bin/sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner
+
 Agenda-OK.html:	Agenda-OK.php \
 		Makefile
 		php Agenda-OK.php > $@

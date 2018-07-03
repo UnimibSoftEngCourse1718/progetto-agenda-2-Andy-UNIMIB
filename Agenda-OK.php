@@ -7,6 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="./Agenda-OK.icon.png" />
 
   <title><?php echo "$APPNAME v$VERSION"; ?></title>
 
@@ -44,7 +45,10 @@
   <!-- ============================================== -->
   <table id="header">
     <tr>
-      <td id="appname"><?php echo "$APPNAME v$VERSION"; ?></td>
+      <td id="appname">
+        <img src="./Agenda-OK.icon.png" alt="Agenda-OK icon" height="42" width="42">
+        <?php echo "$APPNAME v$VERSION"; ?>
+      </td>
       <td id="auth">
 	<?php include 'auth.inc.html'; ?>
       </td>
