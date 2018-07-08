@@ -23,7 +23,7 @@ function	reloadEvents ()
 
   if (Agenda_OK.authuser)
   {
-    var	calendar = $('#calendar').fullCalendar ('getCalendar');
+    // var	calendar = $('#calendar').fullCalendar ('getCalendar');
 
     var	trx = Agenda_OK.DBMS.DB.transaction ('events', 'readonly').objectStore ('events');
 
@@ -55,24 +55,26 @@ function	createEvent (record)
   var	tableName = 'events';
   console.log ('calendar create event for user: ['+ Agenda_OK.authuser +'] - event: %o', record);
 
-  console.log ('adding '+'events'+' data ...');
-  var               trx = Agenda_OK.DBMS.DB.transaction (['events'], 'readwrite');
-  trx.oncomplete =  function (event) { console.log ('trx initialize '+'events'+' completed'); }
-  trx.onerror =     function (event) { console.log ('trx initialize '+'events'+" ERROR!!!", event.target); }
-  var               store = trx.objectStore ('events');
+  console.log ('adding '+tableName+' data ...');
+  var               trx = Agenda_OK.DBMS.DB.transaction ([tableName], 'readwrite');
+  trx.oncomplete =  function (event) { console.log ('trx initialize '+tableName+' completed'); }
+  trx.onerror =     function (event) { console.log ('trx initialize '+tableName+" ERROR!!!", event.target); }
+  var               store = trx.objectStore (tableName);
 
   console.log ("record: %o", record);
   var		request = store.add (record);
   request.onsuccess = function (event) { console.log ('event added ...'); }
   request.onerror   = function (event) { console.log ("event save error: %o", event.target); }
-  console.log ('events'+': sample data added ...');
+  console.log (tableName+': sample data added ...');
 }
 
 // ======================================================================
 function	updateEvent (event)
 {
+  var	tableName = 'events';
+
   console.log ('calendar update event for user: ['+ Agenda_OK.authuser +'] - event: %o', event);
-  var	trx = Agenda_OK.DBMS.DB.transaction (['events'], 'readwrite').objectStore ('évents');
+  var	trx = Agenda_OK.DBMS.DB.transaction ([tableName], 'readwrite').objectStore ('évents');
   var	request = trx.get (event.id);
   request.onerror = function (event) { alert ('failed opening store for updating record: %o', event);  };
   request.onsuccess = function (event)

@@ -20,7 +20,7 @@
       dayClick: function (date, jsEvent, view)
       {
 	if (!Agenda_OK.authuser)
-	  alert ('user not authenticated!');
+	  alert ('user not authenticated!');	// DA SOSTITUIRE CON UN POPUP HDML MODALE
 	// else
           // alert ('a day has been clicked!' + date.format ());
       },
@@ -31,11 +31,11 @@
       select: function(start, end)
       {
 	if (!Agenda_OK.authuser)
-	  alert ('user not authenticated!');
+	  alert ('user not authenticated!');	// DA SOSTITUIRE CON UN POPUP HDML MODALE
         else
 	{
 	  var	eventData = { title: '', start: start, end: end, id: Agenda_OK.nextEventID++ };
-          var	rc = $("#event-dialog").data ('action', 'renderEvent').data ('calEvent', eventData).dialog ("open");
+          $("#event-dialog").data ('action', 'renderEvent').data ('calEvent', eventData).dialog ("open");
           // if (title)
             // $('#calendar').fullCalendar ('renderEvent', eventData, true); // stick? = true
 
@@ -55,7 +55,7 @@
       eventLimit: true, // allow "more" link when too many events
       eventClick: function (calEvent, jsEvent, view)
       {
-        var	rc = $("#event-dialog").data ('action', 'updateEvent').data ('calEvent', calEvent).dialog ("open");
+        $("#event-dialog").data ('action', 'updateEvent').data ('calEvent', calEvent).dialog ("open");
 	// $('#calendar').fullCalendar ('updateEvent', calEvent); //, true); // stick? = true
 	/*
 	alert ('Event: ' + calEvent.title +"\n"+ 'View: ' + view.name +"\n"+
@@ -69,7 +69,7 @@
       eventDrop: function (event, delta, revertFunc)
       {
         // alert (event.title + " was dropped on " + event.start.format ());
-        if (confirm ("Are you sure about this change?"))
+        if (confirm ("Are you sure about this change?"))	// DA SOSTITUIRE CON UN POPUP HDML MODALE
 	{
 	  console.log ('EVENT DROP: MUST UPDATE DATABASE: %o', event, ' - delta: %o', delta);
 	  updateEvent (event);

@@ -1,13 +1,13 @@
 'use strict';
 
 // ============================================================================
-function DBMS (databaseName, version=1)
+function DBMS (_databaseName, version=1)
 {
-  var		databaseName = databaseName;
-  var		databaseVersion = version;
-  var		databaseSupportChecked = false;
-  var		databaseInitialized = false;
-  var		DB = null;
+  this.databaseName = _databaseName;
+  this.databaseVersion = version;
+  this.databaseSupportChecked = false;
+  this.databaseInitialized = false;
+  this.DB = null;
 
 
 
@@ -37,7 +37,12 @@ function DBMS (databaseName, version=1)
 
     // ------------------------------------------------
     if (!window.indexedDB)
-      { window.alert ("Your browser doesn't support a stable version of IndexedDB."); }
+    {
+      var	originURL = /([^?]*)/.exec (window.location) [0];
+      var	URL = originURL.replace (/\.html/, '.error.html');
+      var	errorMessage =  'Your browser doesn\'t support a stable version of IndexedDB.';
+      location.replace (URL + '?error='+errorMessage);
+    }
 
     this.databaseSupportChecked = true;
     console.log ('databaseSupportChecked ...');
@@ -117,24 +122,24 @@ function DBMS (databaseName, version=1)
     // -------------------
     console.log ('create objectStore for users ...');
     var	users         = DB.createObjectStore ('users', { keyPath: 'username' });
-    var	usernameIndex = users.createIndex ('username', 'username', { unique:true });
-    var	emailIndex    = users.createIndex ('email', 'email', { unique:true });
+    users.createIndex ('username', 'username', { unique:true });
+    users.createIndex ('email', 'email', { unique:true });
     users.transaction.oncomplete = function (event) { loadSampleData (DB, 'users', sampleUsers); }
 
     // -------------------
     console.log ('create objectStore for events ...');
     var	events      = DB.createObjectStore ('events', { keyPath: 'id' });
-    var	userIndex   = events.createIndex ('user', 'user');
-    var	titleIndex  = events.createIndex ('title', 'title');
-    var	startIndex  = events.createIndex ('start', 'start');
-    var	endIndex    = events.createIndex ('end', 'end');
+    events.createIndex ('user', 'user');
+    events.createIndex ('title', 'title');
+    events.createIndex ('start', 'start');
+    events.createIndex ('end', 'end');
     events.transaction.oncomplete = function (event) { loadSampleData (DB, 'events', sampleEvents); }
 
     // -------------------
     var	todos       = DB.createObjectStore ('todos', { keyPath: 'user' });
 
     console.log ('initialize_DB_v1 (DB) DONE.');
-  };
+  }
 
   // --------------------------------
   function	loadSampleData (DB, tableName, sampleData)
@@ -158,7 +163,7 @@ function DBMS (databaseName, version=1)
       });
       console.log (tableName+': sample data added ...');
     }
-  };
+  }
 
   this.checkDatabaseSupport ();
   // this.open (databaseName);
