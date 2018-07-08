@@ -14,6 +14,8 @@ html, body { font-family: Veranda, Verdana, Arial, Helvetica, sans-serif; margin
 #rubrica { width:100%; }
 #rubrica td { border: solid red 1px; width: 33%; vertical-align: top; }
 
+#errorMessage { font-size:300%; text-align:center; color:red; border: solid thin red; margin:3em; padding:3em; }
+
 
 .toBeImplemented { text-align: center; color:red; font-size:200%; border: solid thin red; padding:3em; }
 

@@ -149,6 +149,7 @@
   </table> <!-- id="footer" -->
 
   <?php require ('eventFormDialog.inc.html'); ?>
+  <script src="./eventFormDialog.js"></script>
 
   <script src="./init.js"></script>
   <script src="./Agenda-OK.DB.js"></script>

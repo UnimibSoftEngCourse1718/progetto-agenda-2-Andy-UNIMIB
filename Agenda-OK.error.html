@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="./Agenda-OK.icon.png" />
+
+  <title>Agenda-OK v0.1 &Alpha;</title>
+
+  <script src="./lib/jquery.js"></script>
+
+  <!-- ----- AgendaOK ----- -->
+  <link rel="stylesheet" href="./Agenda-OK.css">
+  <script src='./Agenda-OK.js'></script>
+
+</head>
+
+<body>
+<div id="container">
+
+  <!-- ============================================== -->
+  <table id="header">
+    <tr>
+      <td id="appname">
+        <img src="./Agenda-OK.icon.png" alt="Agenda-OK icon" height="42" width="42">
+        Agenda-OK v0.1 &Alpha;      </td>
+      <td id="auth">
+      </td>
+    </tr>
+  </table> <!-- id="header" -->
+
+  <!-- ============================================== -->
+  <div id="tabs">
+    <p id="errorMessage">ERROR!!!</p>
+  </div> <!-- id="tabs" -->
+
+  <!-- ============================================== -->
+  <table id="footer">
+    <tr>
+      <td>Copyright &copy;2018 Andrea Rui</td>
+      <td></td>
+    </tr>
+  </table> <!-- id="footer" -->
+</div> <!-- id="container" -->
+
+  <script>
+    var	args = location.search;
+    var	RE = /error=([^&]*)/;
+    var	match = RE.exec (args);
+    var	errorMessage = match ? match [1] : '';
+    // alert (location + "\n" + 'reloading with user: '+username + "\n" + match);
+
+    var		tag = $('#errorMessage');
+    tag [0].innerHTML = unescape (errorMessage);
+    // tag.innerHTML = errorMessage;
+  </script>
+</body>
+</html>
