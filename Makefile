@@ -10,13 +10,16 @@ $(TOPTARGETS):	$(SUBDIRS)
 $(SUBDIRS):
 		$(MAKE) -C $@ $(MAKECMDGOALS)
 
-all:		Agenda-OK.html $(SUBDIRS)
+all:		Agenda-OK.html $(SUBDIRS) tests sonar
 		cd doc; make all
 
 clean:
 		rm -f Agenda-OK.html
 		rm -f delivery/doc/*
 		cd doc; make clean
+
+tests:
+		touch tests/coverage-test-report.xml
 
 sonar:
 		~/bin/sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner
