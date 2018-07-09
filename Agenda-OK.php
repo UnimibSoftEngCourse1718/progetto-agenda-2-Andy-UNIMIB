@@ -181,21 +181,10 @@
       // ----- create hook to popup event dialog -----
       $('.fc-event-container' ).click (function ()
         { $('#event-dialog').dialog ('open'); });
-/*
-      $(document).ready(function ()
-      {
-        // $('#event-dialog').dialog ({ autoOpen: false });
-        $('.fc-event-container' ).click (function()
-          { $('#event-dialog').dialog ('open'); });
-      });
-*/
 
-      // Agenda_OK.calendar = $('#calendar').fullCalendar ('getCalendar');
-      // Agenda_OK.calendar.reloadData ();
       var	username = /[?&]username=([^&]*)/.exec (window.location.search);
       Agenda_OK.authuser = username ? username [1] : '';
-      // Agenda_OK.reloadEvents ();
-      // Agenda_OK.DBMS.open ();
+
       if (!Agenda_OK.DBMS.initializeData)
       {
 	reloadEvents ();
