@@ -1,7 +1,7 @@
 # per la generazione del file HTML dell'applicazione
 MATRICOLA = 806765
 
-TOPTARGETS :=	all clean
+TOPTARGETS :=	app all clean sonar tests
 
 SUBDIRS :=	doc
 
@@ -10,7 +10,9 @@ $(TOPTARGETS):	$(SUBDIRS)
 $(SUBDIRS):
 		$(MAKE) -C $@ $(MAKECMDGOALS)
 
-all:		Agenda-OK.html $(SUBDIRS) tests sonar
+app:		Agenda-OK.html
+
+all:		app $(SUBDIRS) tests sonar
 		cd doc; make all
 
 clean:

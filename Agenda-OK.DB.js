@@ -3,13 +3,13 @@
 // ============================================================================
 function DBMS (_databaseName, version=1)
 {
+  var	self = this;
   this.databaseName = _databaseName;
   this.databaseVersion = version;
   this.databaseSupportChecked = false;
   this.databaseInitialized = false;
+  this.initializeData = false;
   this.DB = null;
-
-
 
   // check if IndexedDB is supported by current browser
   // -----------------------------------------------------------------
@@ -53,19 +53,24 @@ function DBMS (_databaseName, version=1)
   // -----------------------------------------------------------------
   this.clear = function ()
   {
-    console.log ("clearing database ...");
-    var	req = indexedDB.deleteDatabase (this.DatabaseName);
-	req.onsuccess = function () { console.log ("Deleted database successfully"); };
-	req.onerror   = function () { console.log ("Couldn't delete database"); };
-    this.databaseInitialized = 1;
+    console.log ("clearing database: "+self.databaseName);
+    var	req = indexedDB.deleteDatabase (self.databaseName);
+	req.onsuccess = function ()
+	{
+	  if (self.DB) self.DB.close ();
+	  self.DB = null;
+	  console.log ("Deleted database successfully");
+	};
+	req.onerror   = function () { console.log ("Couldn't delete database: "+self.databaseName); };
+    self.databaseInitialized = false;
     // $.holdReady (false);		// allow onDocumentReady and start application ...
   };
 
   // -----------------------------------------------------------------
   this.open = function ()
   {
-    var		self = this;
-    var		request = window.indexedDB.open (this.DatabaseName, this.databaseVersion);
+    // var		self = this;
+    var		request = window.indexedDB.open (self.databaseName, self.databaseVersion);
 
     // ------------------------------
     request.onerror = function(event)
@@ -81,15 +86,13 @@ function DBMS (_databaseName, version=1)
     {
       console.log ('DB.open request.onsuccess');
       self.DB = event.target.result;
-      // Agenda_OK.DBMS.DB = event.target.result;
-
-      // loadSampleData (this.DB, 'users',  sampleUsers);
-      // loadSampleData (this.DB, 'events', sampleEvents);
-
-      // preloadData ('users',  sampleUsers);
-      // preloadData ('events', sampleEvents, onEventsLoaded);
-
       self.databaseInitialized = true;
+      if (self.initializeData)
+      {
+        loadSampleData (self.DB, 'users',      sampleUsers);
+        loadSampleData (self.DB, 'events',     sampleEvents);
+        loadSampleData (self.DB, 'categories', sampleCategories);
+      }
       $.holdReady (false);		// allow onDocumentReady and start application ...
     };
 
@@ -120,20 +123,26 @@ function DBMS (_databaseName, version=1)
     console.log ('upgrade_DB_v1 (DB)');
 
     // -------------------
+    console.log ('create objectStore for categories ...');
+    var	categories    = DB.createObjectStore ('categories', { keyPath: ['user','name'] });
+    // categories.createIndex ('priority', 'priority');
+    // categories.transaction.oncomplete = function (event) { loadSampleData (DB, 'categories', sampleCategories); }
+
+    // -------------------
     console.log ('create objectStore for users ...');
     var	users         = DB.createObjectStore ('users', { keyPath: 'username' });
     users.createIndex ('username', 'username', { unique:true });
-    users.createIndex ('email', 'email', { unique:true });
-    users.transaction.oncomplete = function (event) { loadSampleData (DB, 'users', sampleUsers); }
+    users.createIndex ('email',    'email',    { unique:true });
+    // users.transaction.oncomplete = function (event) { loadSampleData (DB, 'users', sampleUsers); }
 
     // -------------------
     console.log ('create objectStore for events ...');
     var	events      = DB.createObjectStore ('events', { keyPath: 'id' });
-    events.createIndex ('user', 'user');
+    events.createIndex ('user',  'user');
     events.createIndex ('title', 'title');
     events.createIndex ('start', 'start');
-    events.createIndex ('end', 'end');
-    events.transaction.oncomplete = function (event) { loadSampleData (DB, 'events', sampleEvents); }
+    events.createIndex ('end',   'end');
+    // events.transaction.oncomplete = function (event) { loadSampleData (DB, 'events', sampleEvents); }
 
     // -------------------
     var	todos       = DB.createObjectStore ('todos', { keyPath: 'user' });
@@ -144,6 +153,7 @@ function DBMS (_databaseName, version=1)
   // --------------------------------
   function	loadSampleData (DB, tableName, sampleData)
   {
+    console.log ('loadSampleData (DB, '+tableName+', %o', sampleData)
     var	trx0 = DB.transaction (tableName, 'readwrite').objectStore (tableName).clear ();
 
     trx0.onsuccess = function (event)

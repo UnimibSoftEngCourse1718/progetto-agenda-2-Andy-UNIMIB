@@ -36,6 +36,8 @@
   <!-- ----- AgendaOK ----- -->
   <link rel="stylesheet" href="./Agenda-OK.css">
   <script src='./Agenda-OK.js'></script>
+  <script src='./event.js'></script>
+  <script src='./category.js'></script>
 
 </head>
 
@@ -159,6 +161,7 @@
 
   <script src='./sampledata.users.js'></script>
   <script src='./sampledata.events.js'></script>
+  <script src='./sampledata.categories.js'></script>
 
   <script type="text/javascript">
     // ------------- slider / rubrica ----------------
@@ -166,7 +169,7 @@
     $('.nameEntry').click (function () { alert ('pippo!!!'); return false; });
 
     Agenda_OK.DBMS = new DBMS ('Agenda-OK');
-    // Agenda_OK.DBMS.clear ();
+    // Agenda_OK.DBMS.clear (); Agenda_OK.DBMS.initializeData = true;	// uncomment to initialize DB!!!
     Agenda_OK.DBMS.open ();
 
     $(document).ready (function ()
@@ -176,19 +179,28 @@
       $(function () { $( "#tabs" ).tabs(); } );
 
       // ----- create hook to popup event dialog -----
+      $('.fc-event-container' ).click (function ()
+        { $('#event-dialog').dialog ('open'); });
+/*
       $(document).ready(function ()
       {
         // $('#event-dialog').dialog ({ autoOpen: false });
         $('.fc-event-container' ).click (function()
           { $('#event-dialog').dialog ('open'); });
       });
+*/
 
       // Agenda_OK.calendar = $('#calendar').fullCalendar ('getCalendar');
       // Agenda_OK.calendar.reloadData ();
       var	username = /[?&]username=([^&]*)/.exec (window.location.search);
       Agenda_OK.authuser = username ? username [1] : '';
       // Agenda_OK.reloadEvents ();
-      reloadEvents ();
+      // Agenda_OK.DBMS.open ();
+      if (!Agenda_OK.DBMS.initializeData)
+      {
+	reloadEvents ();
+	reloadCategories ();
+      }
 
       console.log ('FINE DELL\'INIZIO!!!!');
     });
