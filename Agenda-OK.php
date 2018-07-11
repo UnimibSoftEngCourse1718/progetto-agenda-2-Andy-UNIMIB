@@ -33,11 +33,13 @@
   <script src='./lib/sliderNav/slidernav.js'></script>
   <link rel="stylesheet" href="./lib/sliderNav/slidernav.css">
 
+  <!-- ----- color picker: pickrMaster ----- -->
+  <!--script src='./lib/pickr-master/dist/pickr.min.js'></script-->
+  <!--link rel="stylesheet" href="./lib/lib/pickr-master/dist/pickr-min.css"-->
+
   <!-- ----- AgendaOK ----- -->
   <link rel="stylesheet" href="./Agenda-OK.css">
   <script src='./Agenda-OK.js'></script>
-  <script src='./event.js'></script>
-  <script src='./category.js'></script>
 
 </head>
 
@@ -123,9 +125,20 @@
     <!-- ============================================== -->
     <div id="tabs-5">
       <h1>Categorie</h1>
-      <div id="categories"></div>
-      <div class="toBeImplemented">TO BE IMPLEMENTED</div>
+      <table id="categories">
+        <thead>
+	  <tr>
+	    <td>ID</td>
+	    <td>categoria</td>
+	    <td>colore</td>
+	    <td>priorità</td>
+	  </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
     </div>
+    <button id="create-category">Crea una nuova categoria</button>
 
     <!-- ============================================== -->
     <div id="tabs-6">
@@ -152,6 +165,11 @@
 
   <?php require ('eventFormDialog.inc.html'); ?>
   <script src="./eventFormDialog.js"></script>
+  <script src='./event.js'></script>
+
+  <?php require ('categoryFormDialog.inc.html'); ?>
+  <script src="./categoryFormDialog.js"></script>
+  <script src='./category.js'></script>
 
   <script src="./init.js"></script>
   <script src="./Agenda-OK.DB.js"></script>

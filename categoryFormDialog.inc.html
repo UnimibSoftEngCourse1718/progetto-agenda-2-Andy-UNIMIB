@@ -1,0 +1,32 @@
+
+  <!-- ============================================== -->
+  <div id="category-dialog" title="Modifica categoria">
+    <form id="Category-Dialog-Form">
+      <fieldset>
+	<input type="hidden" name="resourceId" resourceId="id" value="" />
+        <input type="hidden" name="ID" id="ID" value="" />
+
+	<table>
+	  <tr>
+	    <td><label for="name">Categoria</label></td>
+	    <td><input type="text" name="name" id="name" value=""></td>
+	  </tr>
+	  <tr>
+	    <td><label for="color">Colore</label></td>
+	    <td><input type="text" name="color" id="color" value=""></td>
+	  </tr>
+	  <tr>
+	    <td><label for="priority">Priorità</label></td>
+	    <td>
+	      <input type="radio" id="priority" name="priority" value="0"> Bassa
+	      <input type="radio" id="priority" name="priority" value="1"> Media
+	      <input type="radio" id="priority" name="priority" value="2"> Alta
+	    </td>
+	  </tr>
+	</table>
+
+	<!-- Allow form submission with keyboard without duplicating the dialog button -->
+	<!--input type="submit" tabindex="-1" style="position:absolute; top:-1000px"-->
+      </fieldset>
+    </form>
+  </div>

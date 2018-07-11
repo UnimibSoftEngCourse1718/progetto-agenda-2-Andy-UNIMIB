@@ -1,7 +1,7 @@
 // ======================================================================
 function	reloadCategories ()
 {
-  console.log ('calendar reloadCategories for user: ['+ Agenda_OK.authuser +']');
+  console.log ('reloadCategories for user: ['+ Agenda_OK.authuser +']');
 
   if (Agenda_OK.authuser)
   {
@@ -14,14 +14,15 @@ function	reloadCategories ()
       var         cursor = event.target.result;
       if (cursor)
       {   
-	if (cursor.value.id >= Agenda_OK.nextCategoryID)
-	  Agenda_OK.nextCategoryID = cursor.value.id +1;
+	if (cursor.value.ID >= Agenda_OK.nextCategoryID)
+	  Agenda_OK.nextCategoryID = cursor.value.ID +1;
 
         if (cursor.value.user == Agenda_OK.authuser)
 	{
 	  console.log ("record: %o", cursor.value);
 	  var	catData = cursor.value;
 	  // $('#calendar').fullCalendar ('renderCategory', catData, true); // stick? = true
+	  addCategoryRow (cursor.value);
         }
 	cursor.continue (); 
       }   
@@ -31,12 +32,11 @@ function	reloadCategories ()
   }
 }
 
-/*
 // ======================================================================
 function	createCategory (record)
 {
   var	tableName = 'categories';
-  console.log ('calendar create event for user: ['+ Agenda_OK.authuser +'] - event: %o', record);
+  console.log ('create category for user: ['+ Agenda_OK.authuser +'] - category: %o', record);
 
   console.log ('adding '+tableName+' data ...');
   var               trx = Agenda_OK.DBMS.DB.transaction ([tableName], 'readwrite');
@@ -46,19 +46,19 @@ function	createCategory (record)
 
   console.log ("record: %o", record);
   var		request = store.add (record);
-  request.onsuccess = function (event) { console.log ('event added ...'); }
-  request.onerror   = function (event) { console.log ("event save error: %o", event.target); }
+  request.onsuccess = function (event) { console.log ('category added ...'); }
+  request.onerror   = function (event) { console.log ("category save error: %o", event.target); }
   console.log (tableName+': sample data added ...');
 }
 
 // ======================================================================
-function	updateCategory (event)
+function	updateCategory (record)
 {
   var	tableName = 'categories';
 
-  console.log ('calendar update event for user: ['+ Agenda_OK.authuser +'] - event: %o', event);
-  var	trx = Agenda_OK.DBMS.DB.transaction ([tableName], 'readwrite').objectStore ('évents');
-  var	request = trx.get (event.id);
+  console.log ('update category for user: ['+ Agenda_OK.authuser +'] - category: %o', record);
+  var	trx = Agenda_OK.DBMS.DB.transaction ([tableName], 'readwrite').objectStore (tableName);
+  var	request = trx.get (record.ID);
   request.onerror = function (event) { alert ('failed opening store for updating record: %o', event);  };
   request.onsuccess = function (event)
   {
@@ -66,12 +66,11 @@ function	updateCategory (event)
     // data.age = 42;			// update the value(s) in the object that you want to change
 
     // Put this updated object back into the database.
-    var		requestUpdate = trx.put (event);
+    var		requestUpdate = trx.put (record);
     requestUpdate.onerror = function (event) { alert ('failed updating record: %o', event);  };
     requestUpdate.onsuccess = function (event)
     {
-      console.log ('event updated: %o', event);
+      console.log ('category updated: %o', record);
     };
   };
 }
-*/

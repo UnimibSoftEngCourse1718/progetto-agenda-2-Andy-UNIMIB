@@ -11,6 +11,7 @@ var	Agenda_OK =
   users :	 	[],
   events :	 	[],
   nextEventID :		1,
+  nextCategoryID :	1,
   calendar :		[],
 };
 

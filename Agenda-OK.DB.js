@@ -124,8 +124,10 @@ function DBMS (_databaseName, version=1)
 
     // -------------------
     console.log ('create objectStore for categories ...');
-    var	categories    = DB.createObjectStore ('categories', { keyPath: ['user','name'] });
-    // categories.createIndex ('priority', 'priority');
+    // var	categories    = DB.createObjectStore ('categories', { keyPath: ['user','name'] });
+    var	categories    = DB.createObjectStore ('categories', { keyPath: 'ID' });
+    categories.createIndex ('ID', 'ID', { unique:true });
+    categories.createIndex ('unique', ['user','name'], { unique:true });
     // categories.transaction.oncomplete = function (event) { loadSampleData (DB, 'categories', sampleCategories); }
 
     // -------------------
