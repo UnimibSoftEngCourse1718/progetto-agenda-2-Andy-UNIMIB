@@ -62,9 +62,6 @@ function	updateCategory (record)
   request.onerror = function (event) { alert ('failed opening store for updating record: %o', event);  };
   request.onsuccess = function (event)
   {
-    // var data = event.target.result;	// Get the old value that we want to update
-    // data.age = 42;			// update the value(s) in the object that you want to change
-
     // Put this updated object back into the database.
     var		requestUpdate = trx.put (record);
     requestUpdate.onerror = function (event) { alert ('failed updating record: %o', event);  };

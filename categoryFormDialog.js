@@ -47,17 +47,10 @@
         console.log ('saving org calCategory: %o', catData, 'action: ', action);
 	if (catData.color == '') catData.color = 'yellow';
 
-	/*
-	var	_ID = $('#cat-ID') [0].value;
-	var	_name = $('#name') [0].value;
-	var	_color = $('#color') [0].value;
-	var	_priority = $('#priority') [0].value;
-	*/
-
 	var	DB_Category =
 	{
 	  user :	Agenda_OK.authuser,
-	  ID :		$('#category-dialog #ID')       [0].value,
+	  ID :		Number ($('#category-dialog #ID') [0].value),
 	  name :	$('#category-dialog #name')     [0].value,
 	  color :	$('#category-dialog #color')    [0].value,
 	  priority :	$('#category-dialog #priority') [0].value,
@@ -82,15 +75,10 @@
 
 	    case 'updateCategory':
 		console.log ("MUST UPDATE ROW: row = $('+#cat-'"+DB_Category.ID+")");
-		/*
-		var		row = $('#cat-'+DB_Category.ID);
-		row.children [2].innerText = DB_Category.color;
-		row.children [3].innerText = DB_Category.priority;
-		*/
 		var	nam = $('#cat-'+DB_Category.ID+' #name');
-		$('#cat-'+DB_Category.ID+' #name').innerText = DB_Category.name;
-		$('#cat-'+DB_Category.ID+' #color').innerText = DB_Category.color;
-		$('#cat-'+DB_Category.ID+' #priority').innerText = DB_Category.priority;
+		$('#cat-'+DB_Category.ID+' #name') [0].innerText = DB_Category.name;
+		$('#cat-'+DB_Category.ID+' #color') [0].innerText = DB_Category.color;
+		$('#cat-'+DB_Category.ID+' #priority') [0].innerText = DB_Category.priority;
 	    	updateCategory (DB_Category);
 		break;
 
