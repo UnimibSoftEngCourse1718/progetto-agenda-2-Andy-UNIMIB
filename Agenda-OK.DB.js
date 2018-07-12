@@ -92,6 +92,8 @@ function DBMS (_databaseName, version=1)
         loadSampleData (self.DB, 'users',      sampleUsers);
         loadSampleData (self.DB, 'events',     sampleEvents);
         loadSampleData (self.DB, 'categories', sampleCategories);
+        loadSampleData (self.DB, 'resources',  sampleResources);
+        loadSampleData (self.DB, 'activities', sampleActivities);
       }
       $.holdReady (false);		// allow onDocumentReady and start application ...
     };
@@ -147,7 +149,10 @@ function DBMS (_databaseName, version=1)
     // events.transaction.oncomplete = function (event) { loadSampleData (DB, 'events', sampleEvents); }
 
     // -------------------
-    var	todos       = DB.createObjectStore ('todos', { keyPath: 'user' });
+    var	resources  = DB.createObjectStore ('resources',  { keyPath: ['user','id'] });
+
+    var	activities = DB.createObjectStore ('activities', { keyPath: 'UID' });
+    activities.createIndex ('activity', ['user','id'], { unique:true });
 
     console.log ('initialize_DB_v1 (DB) DONE.');
   }

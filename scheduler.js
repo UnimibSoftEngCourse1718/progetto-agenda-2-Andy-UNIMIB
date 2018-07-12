@@ -1,9 +1,44 @@
 
+    // ------------- compute activity compatibility number ----------------
+    function	swap (array, index1, index2)
+    {
+      var	tmp = array [index1];
+      array [index1] = array [index2];
+      array [index2] = tmp;
+    }
+
+    // ------------- compute activity compatibility number ----------------
+    function	sort (array)
+    {
+      for (var i=0; i<array.length; i++)
+        for (var j=i+1; j<array.length; j++)
+          if (array [i] > array [j])
+	    swap (array, i, j);
+      // return array;
+    }
+
+    // ------------- compute activity compatibility number ----------------
+    function	computeCompatibleActivities ()
+    {
+      var	testArray = [ 3, 4, 1, 0 ];
+      sort (testArray);
+
+      var	rc = { total:10, compatible:3 };
+      // var	events = .fullCalendar( ‘clientEvents’ [, idOrFilter ] ) -> Array;
+      var	events = $('#scheduler').fullCalendar ('clientEvents');
+
+      for (i=0; i<events.length; i++)
+        ; // events [i];
+      console.log ('computeCompatibleActivities () : %o', rc);
+      return rc;
+    }
+
     // ------------- scheduler ----------------
     var		currentId = 44;
     var		scheduler = $('#scheduler').fullCalendar ('getCalendar');
     $('#scheduler').fullCalendar (
     {
+      height :     '80%',
       locale:      'it',
       // defaultDate: '2018-05-12',
       defaultDate: todaystr,
@@ -47,12 +82,17 @@
         // alert (event.title + " was dropped on " + event.start.format ());
         if (!confirm ("Confermi la modifica?"))
           { revertFunc (); }
+	else
+	{
+	  result = computeCompatibleActivities ();
+	  $('#statusbar') [0].innerText = 'Attività compatibili: '+result.compatible+' su '+result.total+' ...';
+	}
       },
 
       // -----------
       resourceLabelText: 'Attività',
-      resources:	resourcesSampleData,
-      events:		eventsSampleData,
+      resources:	[], // resourcesSampleData,
+      events:		[], // eventsSampleData,
 
       // -----------
       header:

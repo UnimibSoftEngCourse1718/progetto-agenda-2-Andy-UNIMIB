@@ -4,6 +4,8 @@ html, body { font-family: Veranda, Verdana, Arial, Helvetica, sans-serif; margin
 #header, #footer { width:100%; background:#EEE; }
 /* #header, #footer, #tabs   { border: solid red 1px; } */
 #tabs { min-height:800px; }
+.tabcontainer { max-height:calc(80%-6em) !important; }
+#statusbar { width:100%; background:#FB8; font-size:100%; position: absolute; bottom: 2em; padding:.5em; }
 #footer { font-size:80%; position: absolute; bottom: 0; height:3em; }
 
 #appname { text-align: left; font-size:200%; font-weight:bold; width:33%; }
@@ -13,6 +15,10 @@ html, body { font-family: Veranda, Verdana, Arial, Helvetica, sans-serif; margin
 
 #rubrica { width:100%; }
 #rubrica td { border: solid red 1px; width: 33%; vertical-align: top; }
+
+#categories { border: solid thin black; }
+#categories td { width:20em; }
+#categories thead { background-color: gray; font-weight:bold; text-align: center; }
 
 #errorMessage { font-size:300%; text-align:center; color:red; border: solid thin red; margin:3em; padding:3em; }
 

@@ -12,6 +12,8 @@ var	Agenda_OK =
   events :	 	[],
   nextEventID :		1,
   nextCategoryID :	1,
+  nextResourceID :	1,
+  nextActivityID :	1,
   calendar :		[],
 };
 

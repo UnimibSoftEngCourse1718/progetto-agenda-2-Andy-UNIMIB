@@ -8,6 +8,7 @@
 
     $('#calendar').fullCalendar (
     {
+      height: '80%',
       defaultDate: todaystr,	// '2018-06-12'
       header:
       {

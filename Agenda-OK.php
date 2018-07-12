@@ -71,19 +71,19 @@
     </ul>
 
     <!-- ============================================== -->
-    <div id="tabs-1">
+    <div id="tabs-1" class="tabcontainer">
       <h1>Calendario</h1>
       <div id='calendar'></div>
     </div>
 
     <!-- ============================================== -->
-    <div id="tabs-2">
+    <div id="tabs-2" class="tabcontainer">
       <h1>Scheduler</h1>
       <div id='scheduler'></div>
     </div>
 
     <!-- ============================================== -->
-    <div id="tabs-3">
+    <div id="tabs-3" class="tabcontainer">
       <h1>Rubrica</h1>
       <!-- object name="Rubrica" type="text/html" data="Rubrica.inc.html"></object -->
       <table id="rubrica">
@@ -116,14 +116,14 @@
     </div>
 
     <!-- ============================================== -->
-    <div id="tabs-4">
+    <div id="tabs-4" class="tabcontainer">
       <h1>Attività</h1>
       <div id="activities"></div>
       <div class="toBeImplemented">TO BE IMPLEMENTED</div>
     </div>
 
     <!-- ============================================== -->
-    <div id="tabs-5">
+    <div id="tabs-5" class="tabcontainer">
       <h1>Categorie</h1>
       <table id="categories">
         <thead>
@@ -137,11 +137,12 @@
         <tbody>
         </tbody>
       </table>
+
+      <button id="create-category">Crea una nuova categoria</button>
     </div>
-    <button id="create-category">Crea una nuova categoria</button>
 
     <!-- ============================================== -->
-    <div id="tabs-6">
+    <div id="tabs-6" class="tabcontainer">
       <h1>Help</h1>
       <div class="toBeImplemented">TO BE IMPLEMENTED</div>
       <h2 id="H1">Calendario</h2>
@@ -154,6 +155,11 @@
       <p>TBD</p>
     </div>
   </div> <!-- id="tabs" -->
+
+  <!-- ============================================== -->
+  <div id="statusbar">
+      Attività compatibili: M su N ...
+  </div> <!-- id="statusbar" -->
 
   <!-- ============================================== -->
   <table id="footer">
@@ -173,12 +179,15 @@
 
   <script src="./init.js"></script>
   <script src="./Agenda-OK.DB.js"></script>
-  <script src="./scheduler.sampledata.js"></script>
   <script src="./calendar.js"></script>
   <script src="./scheduler.js"></script>
 
+  <script src="./resources.js"></script>
+  <script src="./activities.js"></script>
+
   <script src='./sampledata.users.js'></script>
   <script src='./sampledata.events.js'></script>
+  <script src='./sampledata.scheduler.js'></script>
   <script src='./sampledata.categories.js'></script>
 
   <script type="text/javascript">
@@ -207,6 +216,8 @@
       {
 	reloadEvents ();
 	reloadCategories ();
+	reloadResources ();
+	reloadActivities ();
       }
 
       console.log ('FINE DELL\'INIZIO!!!!');
