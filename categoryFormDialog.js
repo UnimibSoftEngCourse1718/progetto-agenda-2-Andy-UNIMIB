@@ -75,7 +75,7 @@
 
 	    case 'updateCategory':
 		console.log ("MUST UPDATE ROW: row = $('+#cat-'"+DB_Category.ID+")");
-		var	nam = $('#cat-'+DB_Category.ID+' #name');
+		// var	nam = $('#cat-'+DB_Category.ID+' #name');
 		$('#cat-'+DB_Category.ID+' #name') [0].innerText = DB_Category.name;
 		$('#cat-'+DB_Category.ID+' #color') [0].innerText = DB_Category.color;
 		$('#cat-'+DB_Category.ID+' #priority') [0].innerText = DB_Category.priority;
@@ -90,7 +90,7 @@
 	}
 
 	return valid;
-      };
+      }
 
       dialog = $('#category-dialog').dialog (
       {
@@ -109,16 +109,11 @@
 	// -----------------------------------------------
         open: function ()
         {
-          var	dlg = $('#category-dialog');
           var	action = $('#category-dialog').data ('action');
           var	catData = $('#category-dialog').data ('categoryData');
 
 	  if (action == 'updateCategory')
 	    $('#name') [0].readOnly = true;
-
-	  var	x1 = $('#category-dialog #ID') [0];
-	  var	x2 = $('#category-dialog #name') [0];
-	  var	x3 = $('#category-dialog #color') [0];
 
           // console.log ('popping up calCategory: %o', catData);
           // console.log ('who am I: %o', this);
@@ -145,19 +140,21 @@
       });
 
       // add handler to the save button ...
+      /*
       var	form = dialog.find ("form").on ("submit", function (event)
 			{
 			  alert ('onSubmit () ...');
 			  // event.preventDefault();
 			  // addUser();
 			});
+      */
 
       // if an existing category row clicked ...
       $('#categories tbody').on ('click', 'tr.category', function ()
 			{
-			  var	record = { ID : this.children [0].innerText,
-					   name : this.children [1].innerText,
-					   color : this.children [2].innerText,
+			  var	record = { ID       : this.children [0].innerText,
+					   name     : this.children [1].innerText,
+					   color    : this.children [2].innerText,
 					   priority : this.children [3].innerText,
 					 };
 			  // console.log ('updateCat: %o', this.children [0].innerText);

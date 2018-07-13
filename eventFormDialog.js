@@ -39,7 +39,7 @@
 	  dialog.dialog ('close');
 	}
 	return valid;
-      };
+      }
 
       dialog = $('#event-dialog').dialog (
       {
@@ -65,7 +65,6 @@
 	  $('#title')[0].value = eventData.title;
 	  $('#notes').value    = eventData.notes;
 	  $('#category').value = eventData.category;
-	  var	field = $('#priority');
 	  // if (eventData.priority !== null) $('#priority')[eventData.priority].checked = true;
 	  if (eventData.priority !== null) $('#priority')[0].value = eventData.priority;
 	  // ... more ...

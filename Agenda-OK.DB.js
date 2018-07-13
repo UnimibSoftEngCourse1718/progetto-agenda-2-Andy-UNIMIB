@@ -150,6 +150,7 @@ function DBMS (_databaseName, version=1)
 
     // -------------------
     var	resources  = DB.createObjectStore ('resources',  { keyPath: ['user','id'] });
+    resources.createIndex ('title', 'title');
 
     var	activities = DB.createObjectStore ('activities', { keyPath: 'UID' });
     activities.createIndex ('activity', ['user','id'], { unique:true });
