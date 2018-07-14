@@ -55,6 +55,7 @@
       </td>
       <td id="auth">
 	<?php include 'auth.inc.html'; ?>
+	<script src='./auth.js'></script>
       </td>
     </tr>
   </table> <!-- id="header" -->

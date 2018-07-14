@@ -20,11 +20,11 @@ const	sampleActivities =
 [
 	{ UID:1, user: 'root', id: '1', resourceId: 'B', priority: 'low', start: TODAY + 'T02:00:00', end: TODAY + 'T07:00:00', title: 'event 1' },
 	{ UID:2, user: 'root', id: '2', resourceId: 'P', priority: 'low', start: TODAY + 'T05:00:00', end: TODAY + 'T22:00:00', title: 'event 2' },
-	{ UID:3, user: 'root', id: '3', resourceId: 'a', priority: 'low', start: YESTERDAY, end: TOMORROW, title: 'event 3' },
+	{ UID:3, user: 'prof', id: '4', resourceId: 'b', priority: 'low', start: TODAY + 'T03:00:00', end: TODAY + 'T08:00:00', title: 'event 4' },
 	{ UID:4, user: 'root', id: '4', resourceId: 'b', priority: 'low', start: TODAY + 'T03:00:00', end: TODAY + 'T08:00:00', title: 'event 4' },
-	{ UID:5, user: 'root', id: '5', resourceId: 'f', priority: 'low', start: TODAY + 'T00:30:00', end: TODAY + 'T02:30:00', title: 'event 5' },
+	{ UID:5, user: 'prof', id: '5', resourceId: 'f', priority: 'low', start: TODAY + 'T00:30:00', end: TODAY + 'T02:30:00', title: 'event 5' },
 	{ UID:6, user: 'prof', id: '2', resourceId: 'P', priority: 'low', start: TODAY + 'T05:00:00', end: TODAY + 'T22:00:00', title: 'event 2' },
 	{ UID:7, user: 'prof', id: '3', resourceId: 'a', priority: 'low', start: YESTERDAY, end: TOMORROW, title: 'event 3' },
-	{ UID:8, user: 'prof', id: '4', resourceId: 'b', priority: 'low', start: TODAY + 'T03:00:00', end: TODAY + 'T08:00:00', title: 'event 4' },
-	{ UID:9, user: 'prof', id: '5', resourceId: 'f', priority: 'low', start: TODAY + 'T00:30:00', end: TODAY + 'T02:30:00', title: 'event 5' },
+	{ UID:8, user: 'root', id: '3', resourceId: 'a', priority: 'low', start: YESTERDAY, end: TOMORROW, title: 'event 3' },
+	{ UID:9, user: 'root', id: '5', resourceId: 'f', priority: 'low', start: TODAY + 'T00:30:00', end: TODAY + 'T02:30:00', title: 'event 5' },
 ];

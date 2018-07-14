@@ -10,10 +10,74 @@
     // ------------- compute activity compatibility number ----------------
     function	sort (array)
     {
-      for (var i=0; i<array.length; i++)
+      for (var i=0; i<array.length-1; i++)
         for (var j=i+1; j<array.length; j++)
           if (array [i] > array [j])
 	    { swap (array, i, j); }
+    }
+
+    // ------------- compute activity compatibility number ----------------
+    function	eventSort (indexArray, eventArray)
+    {
+      for (var i=0; i<indexArray.length-1; i++)
+        for (var j=i+1; j<indexArray.length; j++)
+          if (eventArray [indexArray [i]].start._d > eventArray [indexArray [j]].start._d)
+	    { swap (indexArray, i, j); }
+    }
+
+    // ------------- compute activity compatibility number ----------------
+    // loop'o su tutti gli eventi, e gestisco (ricorsivamente) le sovrapposizioni
+    // per identificare il minimo numero di sovrapposizioni
+    function	countNonOverlapping (indexArray, eventArray, currPos=0)
+    {
+      var	count = 0;
+
+      console.log ('enter countNonOverlapping() at pos='+currPos);
+
+      for (var i=currPos; i<indexArray.length; i++)
+      {
+	if (!next.end._isValid)
+	  alert ('invalid end!!! %o', next);	// fullDay? uso start+24h ???
+
+	var	curr = eventArray [indexArray [i]];
+	var	next = eventArray [indexArray [i+1]];
+
+	if (next.start._d > curr.end._d)	// if not overlapping,
+	{	// count++ and go check nect
+	  count++;
+	  console.log ('non overlapping at i='+i+' count now = '+count);
+	}
+	else
+	{
+	  // here if overlapping ...
+	  var	bestCount = 0;		// keep track of best result
+	  var	bestPos = -1;
+
+          for (var j=i+1; j<indexArray.length; j++)
+	  {
+	    console.log ('evaluating overlapping at pos j='+j);
+	    var	next = eventArray [indexArray [j]];
+
+	    if (!next.end._isValid)
+	      alert ('invalid end!!! %o', next);	// fullDay? uso start+24h ???
+
+	    if (next.start._d > curr.end._d)	// if next not overlapping, return current count
+	      break;
+	    else
+	    {
+	      var		innerCount = countNonOverlapping (indexArray, eventArray, j);
+	      if (innerCount > bestMatch)
+	        { bestMatch = innerCount; bestPos = j; }
+	    }
+	  }
+
+	  count += bestMatch;
+	  console.log ('after  overlapping ad i='+i+' count now = '+count);
+	}
+      }
+
+      console.log ('exiting countNonOverlapping() with count='+count);
+      return count;
     }
 
     // ------------- compute activity compatibility number ----------------
@@ -26,8 +90,17 @@
       // var	events = .fullCalendar( ‘clientEvents’ [, idOrFilter ] ) -> Array;
       var	events = $('#scheduler').fullCalendar ('clientEvents');
 
+      // creo un array di indici unici degli eventi
+      var	eventIDs = [];
       for (var i=0; i<events.length; i++)
-        ; // events [i];
+        eventIDs.push (events [i].UID);
+      // ordino l'array degli indici in base alla data di inizio di ogni evento
+      eventSort (eventIDs, events);
+
+      // identifico il minimo numero di sovrapposizioni
+      var	nonOverlapping = countNonOverlapping (eventIDs, events);
+
+      var	rc = { total:events.length, compatible:nonOvelapping };
       console.log ('computeCompatibleActivities () : %o', rc);
       return rc;
     }
@@ -84,7 +157,9 @@
 	else
 	{
 	  var	result = computeCompatibleActivities ();
-	  $('#statusbar') [0].innerText = 'Attività compatibili: '+result.compatible+' su '+result.total+' ...';
+	  var	msg  = 'Attività compatibili: '+result.compatible+' su '+result.total+' ...';
+	  alert (msg);
+	  $('#statusbar') [0].innerText = msg;
 	}
       },
 
