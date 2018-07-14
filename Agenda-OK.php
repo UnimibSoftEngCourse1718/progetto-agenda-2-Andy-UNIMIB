@@ -197,7 +197,12 @@
     $('.nameEntry').click (function () { alert ('pippo!!!'); return false; });
 
     Agenda_OK.DBMS = new DBMS ('Agenda-OK');
-    // Agenda_OK.DBMS.clear (); Agenda_OK.DBMS.initializeData = true;	// uncomment to initialize DB!!!
+    if (/[?&]initialize\b/.exec (window.location.search))
+    {
+      Agenda_OK.DBMS.clear ();
+      Agenda_OK.DBMS.initializeData = true;
+    }
+
     Agenda_OK.DBMS.open ();
 
     $(document).ready (function ()
