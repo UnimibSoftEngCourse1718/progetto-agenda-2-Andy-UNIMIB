@@ -33,6 +33,9 @@
   <script src='./lib/sliderNav/slidernav.js'></script>
   <link rel="stylesheet" href="./lib/sliderNav/slidernav.css">
 
+  <!-- ----- ToDoList ----- -->
+  <script src="./lib/TodoList/dist/jquery.todoList.js"></script>
+
   <!-- ----- color picker: pickrMaster ----- -->
   <!--script src='./lib/pickr-master/dist/pickr.min.js'></script-->
   <!--link rel="stylesheet" href="./lib/lib/pickr-master/dist/pickr-min.css"-->
@@ -120,7 +123,7 @@
     <div id="tabs-4" class="tabcontainer">
       <h1>Attività</h1>
       <div id="activities"></div>
-      <div class="toBeImplemented">TO BE IMPLEMENTED</div>
+      <!--div class="toBeImplemented">TO BE IMPLEMENTED</div-->
     </div>
 
     <!-- ============================================== -->
@@ -185,16 +188,24 @@
 
   <script src="./resources.js"></script>
   <script src="./activities.js"></script>
+  <script src="./todos.js"></script>
 
   <script src='./sampledata.users.js'></script>
   <script src='./sampledata.events.js'></script>
   <script src='./sampledata.scheduler.js'></script>
   <script src='./sampledata.categories.js'></script>
+  <script src='./sampledata.todos.js'></script>
 
   <script type="text/javascript">
     // ------------- slider / rubrica ----------------
     $('.sliderRubrica').sliderNav ();
     $('.nameEntry').click (function () { alert ('pippo!!!'); return false; });
+
+    // ------------- todo list ----------------
+    $("#activities").todoList ({
+		title: "Attività",
+		items: [ 'todo 1', 'todo 2', 'todo 3' ]
+		});
 
     Agenda_OK.DBMS = new DBMS ('Agenda-OK');
     if (/[?&]initialize\b/.exec (window.location.search))
@@ -224,6 +235,7 @@
 	reloadCategories ();
 	reloadResources ();
 	reloadActivities ();
+	reloadTodos ();
       }
 
       console.log ('FINE DELL\'INIZIO!!!!');

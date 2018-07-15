@@ -26,3 +26,8 @@ Nella cartella doc è contenuta la documentazione inerente al progetto.
 
 
 Per semplicità, al termine del progetto verrà pubblicata la versione definitiva del progetto e della documentazione di rilascio nella cartella delivery, per chi volesse valutare il progetto senza l'iter di riproduzione.
+
+
+Per avviare l'applicazione una volta scaricati i file:
+- aprire file:///<app_path>/Agenda_OK.html&initialize	(n questo modo si inizializza il database)
+- aprire file:///<app_path>/Agenda_OK.html		(sia avvia l'applicazione in modalità utente)
