@@ -174,7 +174,7 @@ function DBMS (_databaseName, version=1)
 
       sampleData.forEach (function (record)
       {
-        console.log ("record: %o", record);
+        // console.log ("record: %o", record);
         var request = store.add (record);
         request.onsuccess = function (event) { console.log ('record added ...'); }
         request.onerror   = function (event) { console.log ("error: %o", event.target); }

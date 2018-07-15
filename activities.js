@@ -17,7 +17,7 @@ function	reloadActivities ()
 
         if (cursor.value.user == Agenda_OK.authuser)
 	{
-	  console.log ("record: %o", cursor.value);
+	  // console.log ("record: %o", cursor.value);
 	  var	activityData = cursor.value;
 	  $('#scheduler').fullCalendar ('renderEvent', activityData, true); // stick? = true
         }

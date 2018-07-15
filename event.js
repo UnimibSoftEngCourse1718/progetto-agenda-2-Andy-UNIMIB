@@ -19,7 +19,7 @@ function	reloadEvents ()
 
         if (cursor.value.user == Agenda_OK.authuser)
 	{
-	  console.log ("record: %o", cursor.value);
+	  // console.log ("record: %o", cursor.value);
 	  var	eventData = cursor.value;
 	  $('#calendar').fullCalendar ('renderEvent', eventData, true); // stick? = true
         }

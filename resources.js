@@ -17,7 +17,7 @@ function	reloadResources ()
 
         if (cursor.value.user == Agenda_OK.authuser)
 	{
-	  console.log ("record: %o", cursor.value);
+	  // console.log ("record: %o", cursor.value);
 	  var	resourceData = cursor.value;
 	  $('#scheduler').fullCalendar ('addResource', resourceData, true); // scroll to the new resource?
         }

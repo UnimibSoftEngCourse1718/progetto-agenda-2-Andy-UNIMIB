@@ -19,7 +19,7 @@ function	reloadCategories ()
 
         if (cursor.value.user == Agenda_OK.authuser)
 	{
-	  console.log ("record: %o", cursor.value);
+	  // console.log ("record: %o", cursor.value);
 	  // var	catData = cursor.value;
 	  // $('#calendar').fullCalendar ('renderCategory', catData, true); // stick? = true
 	  addCategoryRow (cursor.value);
