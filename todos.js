@@ -12,13 +12,14 @@ function	reloadTodos ()
       var         cursor = event.target.result;
       if (cursor)
       {   
-	if (cursor.value.id >= Agenda_OK.nextResourceID)
-	  Agenda_OK.nextResourceID = cursor.value.id +1;
+	if (cursor.value.id >= Agenda_OK.nextTodoID)
+	  Agenda_OK.nextTodoID = cursor.value.id +1;
 
         if (cursor.value.user == Agenda_OK.authuser)
 	{
 	  // console.log ("record: %o", cursor.value);
 	  var	TodoData = cursor.value;
+	  Agenda_OK.todos.push (TodoData);
 	  // $('#activities').fullCalendar ('addTodos', TodoData, true); // scroll to the new resource?
         }
 	cursor.continue (); 
@@ -31,10 +32,10 @@ function	reloadTodos ()
 
 /*
 // ======================================================================
-function	createEvent (record)
+function	createTodo (record)
 {
   var	tableName = 'events';
-  console.log ('calendar create event for user: ['+ Agenda_OK.authuser +'] - event: %o', record);
+  console.log ('create event for user: ['+ Agenda_OK.authuser +'] - event: %o', record);
 
   console.log ('adding '+tableName+' data ...');
   var               trx = Agenda_OK.DBMS.DB.transaction ([tableName], 'readwrite');
@@ -50,11 +51,11 @@ function	createEvent (record)
 }
 
 // ======================================================================
-function	updateEvent (event)
+function	updateTodo (event)
 {
   var	tableName = 'events';
 
-  console.log ('calendar update event for user: ['+ Agenda_OK.authuser +'] - event: %o', event);
+  console.log ('update event for user: ['+ Agenda_OK.authuser +'] - event: %o', event);
   var	trx = Agenda_OK.DBMS.DB.transaction ([tableName], 'readwrite').objectStore ('évents');
   var	request = trx.get (event.id);
   request.onerror = function (event) { alert ('failed opening store for updating record: %o', event);  };

@@ -3,31 +3,13 @@ Progetto Agenda-OK
 Andrea Rui
 Matricola: 806765
 
+
+FILE DA LEGGERE:
 =============================================================================
 
-Il progetto è interamente basato su HTML5 e Javascript, utilizzando IndexedDB.
+- TBDs.txt		elenca i problemi noti e le funzionalità ancora da implementare
+- INSTALL		contiene le indicazioni per la riproduzione del software
+- LICENSE		elenca le licenze associate ai componenti utilizzati
+- /doc/....		documentazione per la riproduzione del software
+- /delivery		contiene una versione già compilata e distribuibile del software
 
-Per costruire il deliverable occorre disporre di make e php.
-Sono state utilizzate librerie e componenti esterni (JQuery, fullCalendar, sliderNav, ..)
-Tutti tali componenti sono disponibili con licenza open source.
-Tali componenti sono stati inclusi nel repository soltanto per avere un punto unico di riferimento
-per la riproduzione dell'eseguibile.
-In un contesto normale dovrebbero essere scaricate separatamente le versioni più recenti.
-
-Php viene utilizzato soltanto come pre-processor, per assemblare l'HTML finale dai vari componenti
-
-Installazione:
-1. scaricare il repository da GitHub
-2. eseguire make clean
-3. eseguire make
-4. aprire la pagina Agenda-OK.html con un browser
-
-Nella cartella doc è contenuta la documentazione inerente al progetto.
-
-
-Per semplicità, al termine del progetto verrà pubblicata la versione definitiva del progetto e della documentazione di rilascio nella cartella delivery, per chi volesse valutare il progetto senza l'iter di riproduzione.
-
-
-Per avviare l'applicazione una volta scaricati i file:
-- aprire file:///<app_path>/Agenda_OK.html&initialize	(n questo modo si inizializza il database)
-- aprire file:///<app_path>/Agenda_OK.html		(sia avvia l'applicazione in modalità utente)

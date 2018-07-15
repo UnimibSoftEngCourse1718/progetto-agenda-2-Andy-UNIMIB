@@ -58,7 +58,6 @@
       </td>
       <td id="auth">
 	<?php include 'auth.inc.html'; ?>
-	<script src='./auth.js'></script>
       </td>
     </tr>
   </table> <!-- id="header" -->
@@ -90,33 +89,11 @@
     <div id="tabs-3" class="tabcontainer">
       <h1>Rubrica</h1>
       <!-- object name="Rubrica" type="text/html" data="Rubrica.inc.html"></object -->
-      <table id="rubrica">
-        <tr>
-	  <td>
-	    <div class="sliderRubrica">
-	      <div class="slider-content">
-	        <?php require ('rubricaSampleData.inc.html'); ?>
-	      </div>
-	    </div>
-	  </td>
-
-	  <td>
-	  CATEGORIE
-	  <br/>
-	  add cat
-	  <br/>
-	  cat list and modify
-	  </td>
-
-	  <td>
-	  EDIT ACCOUNT
-	  <br/>
-	  fields for currently selected account
-	  <br/>
-
-	  </td>
-        </tr>
-      </table>
+      <div class="sliderRubrica">
+        <div class="slider-content">
+	  <?php require ('sampledata.rubrica.inc.html'); ?>
+        </div>
+      </div>
     </div>
 
     <!-- ============================================== -->
@@ -148,15 +125,7 @@
     <!-- ============================================== -->
     <div id="tabs-6" class="tabcontainer">
       <h1>Help</h1>
-      <div class="toBeImplemented">TO BE IMPLEMENTED</div>
-      <h2 id="H1">Calendario</h2>
-      <p>TBD</p>
-      <h2 id="H2">Rubrica</h2>
-      <p>TBD</p>
-      <h2 id="H3">Attività</h2>
-      <p>TBD</p>
-      <h2 id="H4">Categorie</h2>
-      <p>TBD</p>
+      <?php require ('help.inc.html'); ?>
     </div>
   </div> <!-- id="tabs" -->
 
@@ -186,9 +155,12 @@
   <script src="./calendar.js"></script>
   <script src="./scheduler.js"></script>
 
+  <script src="./users.js"></script>
   <script src="./resources.js"></script>
   <script src="./activities.js"></script>
   <script src="./todos.js"></script>
+
+  <script src='./auth.js'></script>
 
   <script src='./sampledata.users.js'></script>
   <script src='./sampledata.events.js'></script>
@@ -236,6 +208,7 @@
 	reloadResources ();
 	reloadActivities ();
 	reloadTodos ();
+	reloadUsers ();
       }
 
       console.log ('FINE DELL\'INIZIO!!!!');

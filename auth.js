@@ -12,6 +12,13 @@
 	      $('#loginbtn').hide ();
 	      $('#logoutbtn').show ();
 
+	      var	userFound = false;
+	      for (var i=0; i < Agenda_OK.users.length; i++)
+	        if (userFound = Agenda_OK.users [i].username == username)
+		  break;
+	      if (!userFound)
+	        createUser ({ username:username, password:'', email:'' });
+
 	      // here must reload document with new user
 	      // location.replace ("https://www.w3schools.com");
 	      // alert (location + "\n" + location.origin + location.pathname + '?username='+username);

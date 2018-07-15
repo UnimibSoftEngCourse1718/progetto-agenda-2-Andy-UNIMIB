@@ -10,11 +10,13 @@ var	Agenda_OK =
   authuser :		'',
   users :	 	[],
   events :	 	[],
+  calendar :		[],
+  todos :		[],
   nextEventID :		1,
   nextCategoryID :	1,
   nextResourceID :	1,
   nextActivityID :	1,
-  calendar :		[],
+  nextTodoID :		1,
 };
 
 console.log ('AGENDA_OK');

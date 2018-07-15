@@ -51,21 +51,25 @@ function	createEvent (record)
 }
 
 // ======================================================================
-function	updateEvent (event)
+function	updateEvent (record)
 {
   var	tableName = 'events';
 
-  console.log ('calendar update event for user: ['+ Agenda_OK.authuser +'] - event: %o', event);
-  var	trx = Agenda_OK.DBMS.DB.transaction ([tableName], 'readwrite').objectStore ('évents');
-  var	request = trx.get (event.id);
+  console.log ('calendar update event for user: ['+ Agenda_OK.authuser +'] - event: %o', record);
+  var	trx = Agenda_OK.DBMS.DB.transaction (tableName, 'readwrite').objectStore (tableName);
+  var	request = trx.get (record.id);
   request.onerror = function (event) { alert ('failed opening store for updating record: %o', event);  };
   request.onsuccess = function (event)
   {
-    // var data = event.target.result;	// Get the old value that we want to update
-    // data.age = 42;			// update the value(s) in the object that you want to change
+    var		_record = event.target.result;
+    _record.title	= record.title;
+    _record.start	= record.start._d;
+    _record.end		= record.end._d;
+    _record.allDay	= record.allDay;
+    _record.priority	= record.priority;
 
     // Put this updated object back into the database.
-    var		requestUpdate = trx.put (event);
+    var		requestUpdate = trx.put (_record);
     requestUpdate.onerror = function (event) { alert ('failed updating record: %o', event);  };
     requestUpdate.onsuccess = function (event)
     {

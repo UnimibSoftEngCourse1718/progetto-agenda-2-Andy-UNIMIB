@@ -145,7 +145,7 @@ function DBMS (_databaseName, version=1)
     var	events      = DB.createObjectStore ('events', { keyPath: 'id' });
     events.createIndex ('user',  'user');
     events.createIndex ('title', 'title');
-    events.createIndex ('start', 'start');
+    events.createIndex ('cronologico', ['start','end']);
     events.createIndex ('end',   'end');
     // events.transaction.oncomplete = function (event) { loadSampleData (DB, 'events', sampleEvents); }
 
@@ -157,7 +157,7 @@ function DBMS (_databaseName, version=1)
     activities.createIndex ('activity', ['user','id'], { unique:true });
 
     // -------------------
-    var	todos  = DB.createObjectStore ('todos',  { keyPath: ['user','id'] });
+    var	todos  = DB.createObjectStore ('todos',  { keyPath: 'id' });
     todos.createIndex ('title', 'title');
 
     console.log ('initialize_DB_v1 (DB) DONE.');
@@ -181,7 +181,7 @@ function DBMS (_databaseName, version=1)
       {
         // console.log ("record: %o", record);
         var request = store.add (record);
-        request.onsuccess = function (event) { console.log ('record added ...'); }
+        request.onsuccess = function (event) { /* console.log ('record added ...'); */ }
         request.onerror   = function (event) { console.log ("error: %o", event.target); }
       });
       console.log (tableName+': sample data added ...');
