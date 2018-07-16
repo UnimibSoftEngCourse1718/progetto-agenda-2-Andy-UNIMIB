@@ -91,7 +91,7 @@
       <!-- object name="Rubrica" type="text/html" data="Rubrica.inc.html"></object -->
       <div class="sliderRubrica">
         <div class="slider-content">
-	  <?php require ('sampledata.rubrica.inc.html'); ?>
+	  <?php require ('sampledata/sampledata.rubrica.inc.html'); ?>
         </div>
       </div>
     </div>
@@ -162,11 +162,11 @@
 
   <script src='./auth.js'></script>
 
-  <script src='./sampledata.users.js'></script>
-  <script src='./sampledata.events.js'></script>
-  <script src='./sampledata.scheduler.js'></script>
-  <script src='./sampledata.categories.js'></script>
-  <script src='./sampledata.todos.js'></script>
+  <script src='./sampledata/sampledata.users.js'></script>
+  <script src='./sampledata/sampledata.events.js'></script>
+  <script src='./sampledata/sampledata.scheduler.js'></script>
+  <script src='./sampledata/sampledata.categories.js'></script>
+  <script src='./sampledata/sampledata.todos.js'></script>
 
   <script type="text/javascript">
     // ------------- slider / rubrica ----------------
