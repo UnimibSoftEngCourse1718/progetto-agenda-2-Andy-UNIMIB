@@ -26,6 +26,13 @@ tests:
 sonar:
 		~/bin/sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner
 
+distrib:
+		cp *.html *.css *.js delivery
+		cp -r lib delivery
+		cp README INSTALL LICENSE TBDs.txt delivery
+		cp Makefile sonar.properties delivery
+		cp doc/*.pdf delivery/doc
+
 Agenda-OK.html:	Agenda-OK.php \
 		Makefile
 		php Agenda-OK.php > $@

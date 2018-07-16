@@ -25,3 +25,9 @@ Per semplicità, al termine del progetto verrà pubblicata la versione definitiv
 Per avviare l'applicazione una volta scaricati i file:
 - aprire file:///<app_path>/Agenda_OK.html&initialize	(n questo modo si inizializza il database)
 - aprire file:///<app_path>/Agenda_OK.html		(sia avvia l'applicazione in modalità utente)
+
+autenticandosi con le utenze 'root', 'prof' o 'pippo' risultano già precaricati alcuni dati di esempio per provare.
+
+per rieseguire i test di SonarQube --> make sonar
+
+per riprodurre la cartella con la release da distribuire --> make distrib

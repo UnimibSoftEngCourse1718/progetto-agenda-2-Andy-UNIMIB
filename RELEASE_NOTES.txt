@@ -1,0 +1,29 @@
+Versione 1.0 del 16 Luglio 2018
+============================================================================
+ELENCO DELLE COSE ANCORA DA COMPLETARE
+
+- la gestione del calcolo della sovrapposizione degli eventi non è ancora agganciata al resize dell'evento.
+- associazione ad eventi e voci di rubrica delle categirie e del relativo colore di visualizzazione.
+- dialog di configurazione delle categorie: non è ancora registrata nel DB la priorità attribuita.
+- è da migliorare l'impaginazione, in quando tende ad occupare una dimensione verticale superiore alla 
+  dimensione della finestra del browser.
+- per fare contento Sonar, sostituire i popup di Javascript (alert, confirm, etc.) con dialog modali.
+- in ogni caso alcuni prompt possono essere sostituiti con una migliore gestione degli errori
+- migliorare l'incapsulazione degli oggetti di alto livello
+- inclusione delle librerie 'minified' per migliorare le prestazioni dell'applicazione
+
+
+
+ELENCO DELLE COSE ANCORA DA IMPLEMENTARE
+
+- dialog di configurazione delle voci di rubrica
+- dialog di configurazione delle voci del ToDos
+- prioritizzazione dei ToDo's in relazione alla scadenza
+- coverage tests
+
+
+KNOWN BUGS
+
+- sembra che con un ultimo aggiornamento (post SonarQube) abbia smesso di funzionare il ricalcolo del
+  massimo numero di eventi non sovrapposti all'atto della creazione di un nuovo evento
+

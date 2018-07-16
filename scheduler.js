@@ -93,7 +93,7 @@
       }
       // console.log (indent, 'EVENTS best from overlapping: ', best);
 
-      count = not_overlapping_events.length + best;
+      var	count = not_overlapping_events.length + best;
       // console.log (indent, 'RETURNINIG ', count, ' = ', not_overlapping_events.length, ' + ', best);
       indent = orgIndent;
       return count;
@@ -102,7 +102,6 @@
     // ------------- compute activity compatibility number ----------------
     function	computeCompatibleActivities ()
     {
-      var	rc = { total:10, compatible:3 };
       // var	events = .fullCalendar( ‘clientEvents’ [, idOrFilter ] ) -> Array;
       var	events = $('#scheduler').fullCalendar ('clientEvents');
 
@@ -154,7 +153,6 @@
         if (title)
 	{
 	  // alert ('view name/type:'+this.type +"\n" + (start.format ()) +' / '+ (end.format ()) + "\nrid:"+res.id);
-	  var	res ='a';	// !!!!!!!!!!! DA PRELEVARE DAL DIALOG !!!!!!!!!!!!!
 	  eventData = { title:title, start:start, end:end, id:Agenda_OK.nextEventID++, allDay:allDay, resourceId:res.id }; // this.uid };
 	  $('#scheduler').fullCalendar ('renderEvent', eventData, true); // stick? = true
 	  computeCompatibleActivities ();
