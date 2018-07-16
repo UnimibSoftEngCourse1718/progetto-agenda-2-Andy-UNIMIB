@@ -29,7 +29,7 @@ sonar:
 distrib:
 		cp *.html *.css *.js delivery
 		cp -r lib delivery
-		cp README INSTALL LICENSE TBDs.txt delivery
+		cp README INSTALL LICENSE RELEASE_NOTES.txt delivery
 		cp Makefile sonar.properties delivery
 		cp doc/*.pdf delivery/doc
 

@@ -13,14 +13,18 @@ OOD2PDF :=	soffice --headless --convert-to pdf:writer_pdf_Export -env:UserInstal
 
 FN1		:= Istruzioni\ per\ Installazione
 FN2		:= Presentazione\ del\ Progetto
+FN3		:= Agenda_OK-M\ -\ Requisiti
 
-all:		$(FN1).pdf $(FN2).pdf
+all:		$(FN1).pdf $(FN2).pdf $(FN3).pdf
 		cp *.pdf ../delivery/doc
 
 $(FN1).pdf:	$(FN1).odt
 		$(OOD2PDF) "$<"
 
 $(FN2).pdf:	$(FN2).odp
+		$(OOD2PDF) "$<"
+
+$(FN3).pdf:	$(FN3).odt
 		$(OOD2PDF) "$<"
 
 clean:
