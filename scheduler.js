@@ -140,7 +140,7 @@
       defaultDate: todaystr,
       defaultView: 'timelineDay',
       editable:	   true,
-      dayClick: function (date, jsEvent, view) { alert ('a day has been clicked!' + date.format () ); },
+      dayClick: function (date, jsEvent, view) { /* alert ('a day has been clicked!' + date.format ()); */ },
 
       // -----------
       selectable: true,
@@ -152,8 +152,9 @@
         var	eventData;
         if (title)
 	{
+	  var	res_ID = res ? res.id : '';
 	  // alert ('view name/type:'+this.type +"\n" + (start.format ()) +' / '+ (end.format ()) + "\nrid:"+res.id);
-	  eventData = { title:title, start:start, end:end, id:Agenda_OK.nextEventID++, allDay:allDay, resourceId:res.id }; // this.uid };
+	  eventData = { title:title, start:start, end:end, id:Agenda_OK.nextEventID++, allDay:allDay, resourceId:res_ID }; // this.uid };
 	  $('#scheduler').fullCalendar ('renderEvent', eventData, true); // stick? = true
 	  computeCompatibleActivities ();
         }
@@ -180,15 +181,16 @@
         if (!confirm ("Confermi la modifica?"))
           { revertFunc (); }
 	else
-	{
-	  computeCompatibleActivities ();
-	  /*
-	  var	result = computeCompatibleActivities ();
-	  var	msg  = 'Attività compatibili: '+result.compatible+' su '+result.total+' ...';
-	  alert (msg);
-	  $('#statusbar') [0].innerText = msg;
-	  */
-	}
+	  { computeCompatibleActivities (); }
+      },
+
+      // -----------
+      eventResize: function(event, delta, revertFunc)
+      {
+	if (typeof delta == 'undefined')
+	  { revertFunc(); }
+	else
+	  { computeCompatibleActivities (); }
       },
 
       // -----------
